@@ -95,6 +95,7 @@ export const buildPageSchemas = (
       BUSINESS.facebook,
       BUSINESS.instagram,
       BUSINESS.youtube,
+      BUSINESS.tiktok,
     ],
   };
 
@@ -140,6 +141,7 @@ export const buildPageSchemas = (
         BUSINESS.facebook,
         BUSINESS.instagram,
         BUSINESS.youtube,
+        BUSINESS.tiktok,
       ],
     },
     {
