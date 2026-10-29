@@ -47,8 +47,8 @@ const breadcrumb = page.breadcrumb ?? [];
     <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
       <div>
         {breadcrumb.length > 1 && (
-          <nav aria-label={t.landing.hero.breadcrumbAriaLabel} class="mb-6 text-sm text-white/75">
-            <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <nav aria-label={t.landing.hero.breadcrumbAriaLabel} class="absolute inset-x-4 bottom-full mb-3 text-sm leading-4 md:mb-1 md:leading-5 text-white/75">
+            <ol class="flex flex-wrap items-center gap-x-2">
               {breadcrumb.map((crumb, index) => {
                 const isCurrent = index === breadcrumb.length - 1;
                 return (
