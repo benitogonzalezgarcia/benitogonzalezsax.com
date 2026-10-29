@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import type { LandingPageData } from '../../data/landingPages';
 import { PROBODA_URL } from '../../lib/site';
 import { stripSegmentAAccents } from '../../lib/typography';
+import LandingAccordionSection from './LandingAccordionSection.astro';
 
 interface Props {
   page: LandingPageData;
@@ -12,41 +13,40 @@ const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
-<section class="border-t border-gray-200 bg-white py-16">
-  <div class="container mx-auto grid gap-10 px-4 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-    <div>
-      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent">
-        {t.landing.bio.eyebrow}
-      </p>
-      <h2 class="mt-4 font-segmentA text-[2.6rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[3.4rem]">
-        {stripSegmentAAccents(t.landing.bio.title)}
-      </h2>
-      <div class="mt-6 space-y-4 text-lg leading-8 text-gray-700">
-        {t.landing.bio.paragraphs.map((paragraph) => (
-          <p>{paragraph}</p>
-        ))}
-        {page.type === 'home' && (
-          <p>
-            {t.landing.bio.probodaPrefix}
-            <a href={PROBODA_URL} target="_blank" rel="noopener" class="font-semibold text-primary underline underline-offset-4 hover:text-accent">proboda.es</a>
-            {t.landing.bio.probodaSuffix}
-          </p>
-        )}
+<LandingAccordionSection eyebrow={t.landing.bio.eyebrow}>
+  <section class="bg-white pb-20 pt-2">
+    <div class="container mx-auto grid gap-10 px-4 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div>
+        <h2 class="font-segmentA text-[2.6rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[3.4rem]">
+          {stripSegmentAAccents(t.landing.bio.title)}
+        </h2>
+        <div class="mt-6 space-y-4 text-lg leading-8 text-gray-700">
+          {t.landing.bio.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+          {page.type === 'home' && (
+            <p>
+              {t.landing.bio.probodaPrefix}
+              <a href={PROBODA_URL} target="_blank" rel="noopener" class="font-semibold text-primary underline underline-offset-4 hover:text-accent">proboda.es</a>
+              {t.landing.bio.probodaSuffix}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div class="rounded-[1.75rem] border border-gray-200 bg-gray-50 p-6 shadow-sm">
+        <h3 class="text-[0.85rem] font-semibold uppercase tracking-[0.24em] text-primary">
+          {t.landing.bio.venuesLabel}
+        </h3>
+        <ul class="mt-5 space-y-3 text-base leading-7 text-gray-700">
+          {t.landing.bio.venues.map((venue) => (
+            <li class="flex gap-3">
+              <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent"></span>
+              <span>{venue}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
-
-    <div class="rounded-[1.75rem] border border-gray-200 bg-gray-50 p-6 shadow-sm">
-      <h3 class="text-[0.85rem] font-semibold uppercase tracking-[0.24em] text-primary">
-        {t.landing.bio.venuesLabel}
-      </h3>
-      <ul class="mt-5 space-y-3 text-base leading-7 text-gray-700">
-        {t.landing.bio.venues.map((venue) => (
-          <li class="flex gap-3">
-            <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent"></span>
-            <span>{venue}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-</section>
+  </section>
+</LandingAccordionSection>
