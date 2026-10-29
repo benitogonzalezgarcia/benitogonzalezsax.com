@@ -166,6 +166,7 @@ export const en = {
   landing: {
     hero: {
       trustTitle: 'Why choose my services?',
+      breadcrumbAriaLabel: 'Breadcrumb',
       stats: {
         eventsValue: '+200',
         eventsLine1: 'Events',

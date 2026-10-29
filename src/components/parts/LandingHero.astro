@@ -14,6 +14,7 @@ const heroTitleDisplay = page.heroTitle;
 const heroTitleClass =
   'max-w-4xl text-[1.75rem] font-[525] uppercase leading-[1.1] tracking-[0.038em] md:text-[2.95rem]';
 const trustTitle = page.trustTitle || t.landing.hero.trustTitle;
+const breadcrumb = page.breadcrumb ?? [];
 ---
 
 <section id={t.nav.home.anchor} class="relative overflow-hidden bg-black pb-24 pt-36 text-white">
@@ -45,6 +46,27 @@ const trustTitle = page.trustTitle || t.landing.hero.trustTitle;
   <div class="container relative mx-auto px-4">
     <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
       <div>
+        {breadcrumb.length > 1 && (
+          <nav aria-label={t.landing.hero.breadcrumbAriaLabel} class="absolute inset-x-4 bottom-full mb-3 text-sm leading-4 md:mb-1 md:leading-5 text-white/75">
+            <ol class="flex flex-wrap items-center gap-x-2">
+              {breadcrumb.map((crumb, index) => {
+                const isCurrent = index === breadcrumb.length - 1;
+                return (
+                  <li class="flex items-center gap-x-2">
+                    {index > 0 && <span aria-hidden="true">›</span>}
+                    {isCurrent ? (
+                      <span aria-current="page" class="text-white">{crumb.label}</span>
+                    ) : (
+                      <a href={crumb.href} class="underline-offset-4 transition-colors hover:text-accent hover:underline">
+                        {crumb.label}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        )}
         <p class="mb-4 text-[1rem] font-semibold uppercase tracking-[0.32em] text-accent md:text-[1.18rem]">
           {page.heroLabel}
         </p>
