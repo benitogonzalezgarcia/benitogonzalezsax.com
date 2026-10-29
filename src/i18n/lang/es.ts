@@ -163,6 +163,7 @@ export const es = {
     privacyPolicy: 'Política de privacidad',
     citiesTitle: 'Saxofonista por ciudades',
     cityLinkPrefix: 'Saxofonista en',
+    socialTitle: 'Redes sociales',
   },
   landing: {
     hero: {

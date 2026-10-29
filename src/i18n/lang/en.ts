@@ -161,6 +161,7 @@ export const en = {
     privacyPolicy: 'Privacy policy',
     citiesTitle: 'Saxophonist by city',
     cityLinkPrefix: 'Saxophonist in',
+    socialTitle: 'Social media',
   },
   landing: {
     hero: {
