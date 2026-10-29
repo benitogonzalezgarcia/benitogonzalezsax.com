@@ -1208,10 +1208,7 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => {
     cityCoverageBullets: [],
     testimonialsTitle: `Opiniones y Testimonios para bodas en ${location.city}`,
     testimonialsDescription: `Opiniones reales de clientes y parejas que ayudan a entender cómo se vive el servicio en una boda.`,
-    testimonials: sharedTestimonials.map((testimonial) => ({
-      ...testimonial,
-      role: testimonial.role === 'Boda' ? location.testimonialTag : testimonial.role,
-    })),
+    testimonials: sharedTestimonials,
     faqTitle: `FAQ sobre contratar saxofonista para bodas en ${location.city}`,
     faqs: buildDifferentiatedCityFaqs(location),
     contactTitle: `Pide presupuesto para tu boda en ${location.city}`,

@@ -845,10 +845,7 @@ export const buildEnglishCityPageData = (location: LocationEntry): LandingPageDa
     testimonialsTitle: `Reviews and testimonials for weddings in ${place}`,
     testimonialsDescription:
       'Real reviews from couples and clients that help you understand how the service feels at a wedding.',
-    testimonials: sharedTestimonials.map((testimonial) => ({
-      ...testimonial,
-      role: testimonial.role === 'Wedding' ? `Wedding in ${place}` : testimonial.role,
-    })),
+    testimonials: sharedTestimonials,
     faqTitle: `FAQ about hiring a saxophonist in ${place}`,
     faqs: buildCityFaqs(location),
     contactTitle: `Request a quote in ${place}`,
