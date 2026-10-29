@@ -18,7 +18,7 @@ export const BUSINESS = {
   // Profile URL shown in Google's knowledge panel; pfbid permalinks rotate and 404.
   facebook: 'https://www.facebook.com/profile.php?id=61561180926141',
   instagram: 'https://www.instagram.com/benitogonzalezsax/',
-  youtube: 'https://www.youtube.com/@benitogonzalezsax/featured',
+  youtube: 'https://www.youtube.com/@benitogonzalezsax',
   tiktok: 'https://www.tiktok.com/@saxofonistaparabodas',
   // Canonical Maps URL for the Google Business Profile (mid /g/11w839lz5t);
   // share.google links are redirects and weaker as sameAs entity signals.
