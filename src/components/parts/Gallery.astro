@@ -10,6 +10,7 @@ import InstagramIcon from "../../assets/icons/instagram.svg";
 import YouTubeIcon from "../../assets/icons/youtube.svg";
 import { FadeIn } from '../animations';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { BUSINESS } from '../../lib/site';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -106,21 +107,21 @@ const galleryItems: GalleryItem[] = [
       </p>
       <div class="flex justify-center space-x-6">
         <a
-          href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/"
+          href={BUSINESS.facebook}
           aria-label={t.gallery.facebookAriaLabel}
           class="text-primary hover:text-accent transition-colors"
         >
           <FacebookIcon />
         </a>
         <a
-          href="https://www.instagram.com/benitogonzalezsax/"
+          href={BUSINESS.instagram}
           aria-label={t.gallery.instagramAriaLabel}
           class="text-primary hover:text-accent transition-colors"
         >
           <InstagramIcon />
         </a>
         <a
-          href="https://www.youtube.com/@benitogonzalezsax/featured"
+          href={BUSINESS.youtube}
           aria-label={t.gallery.youtubeAriaLabel}
           class="text-primary hover:text-accent transition-colors"
         >

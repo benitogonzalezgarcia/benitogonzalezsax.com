@@ -4,8 +4,6 @@ import { en } from '../i18n/lang/en';
 import { es } from '../i18n/lang/es';
 import { BUSINESS, absoluteUrl } from './site';
 
-const REVIEW_SCHEMA_SLUGS = ['saxofonista-para-bodas-en-madrid'];
-
 // One canonical id for the musician so every page's founder/employee link
 // resolves to the same entity instead of a per-URL duplicate.
 const PERSON_ID = absoluteUrl('/#benito-gonzalez');
@@ -24,35 +22,6 @@ export const buildPageSchemas = (
   const province = location?.province ?? BUSINESS.addressRegion;
   const latitude = location?.latitude ?? BUSINESS.latitude;
   const longitude = location?.longitude ?? BUSINESS.longitude;
-
-  // The same nine testimonials on all 11 city pages is a Google review-spam
-  // pattern, so reviews ship only on the brand entity (homepage) plus the city
-  // pages listed here, which already have review snippets live in Search.
-  const showReviews = !location || REVIEW_SCHEMA_SLUGS.includes(location.slug);
-
-  const reviewSchema = showReviews
-    ? {
-        review: page.testimonials.map((testimonial) => ({
-          '@type': 'Review',
-          reviewBody: testimonial.quote,
-          author: {
-            '@type': 'Person',
-            name: testimonial.name,
-          },
-          reviewRating: {
-            '@type': 'Rating',
-            ratingValue: '5',
-            bestRating: '5',
-          },
-        })),
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '5',
-          reviewCount: String(page.testimonials.length),
-          bestRating: '5',
-        },
-      }
-    : {};
 
   const offerCatalog = {
     '@type': 'OfferCatalog',
@@ -126,6 +95,7 @@ export const buildPageSchemas = (
       BUSINESS.facebook,
       BUSINESS.instagram,
       BUSINESS.youtube,
+      BUSINESS.tiktok,
     ],
   };
 
@@ -166,12 +136,12 @@ export const buildPageSchemas = (
       hasOfferCatalog: offerCatalog,
       founder: { '@id': PERSON_ID },
       employee: { '@id': PERSON_ID },
-      ...reviewSchema,
       sameAs: [
         BUSINESS.googleBusiness,
         BUSINESS.facebook,
         BUSINESS.instagram,
         BUSINESS.youtube,
+        BUSINESS.tiktok,
       ],
     },
     {

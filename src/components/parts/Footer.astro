@@ -1,8 +1,14 @@
 ---
 import Logo from '../../assets/logo.svg';
+import FacebookIcon from '../../assets/icons/facebook.svg';
+import GoogleIcon from '../../assets/icons/google.svg';
+import InstagramIcon from '../../assets/icons/instagram.svg';
+import TikTokIcon from '../../assets/icons/tiktok.svg';
+import YouTubeIcon from '../../assets/icons/youtube.svg';
 import { getEnglishLocationName, getEnglishLocationSlug, getLaunchedLocations } from '../../data/locations';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import { getRouteForLanguage } from '../../i18n/routes';
+import { BUSINESS } from '../../lib/site';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -11,6 +17,14 @@ const cityLinks = getLaunchedLocations().map((location) => ({
   href: lang === 'en' ? `/en/${getEnglishLocationSlug(location)}` : `/${location.slug}`,
   label: `${t.footer.cityLinkPrefix} ${lang === 'en' ? getEnglishLocationName(location) : location.city}`,
 }));
+
+const socialLinks = [
+  { href: BUSINESS.instagram, label: 'Instagram', Icon: InstagramIcon },
+  { href: BUSINESS.tiktok, label: 'TikTok', Icon: TikTokIcon },
+  { href: BUSINESS.youtube, label: 'YouTube', Icon: YouTubeIcon },
+  { href: BUSINESS.facebook, label: 'Facebook', Icon: FacebookIcon },
+  { href: BUSINESS.googleBusiness, label: 'Google', Icon: GoogleIcon },
+];
 ---
 
 <footer class="bg-primary text-white py-8">
@@ -36,6 +50,15 @@ const cityLinks = getLaunchedLocations().map((location) => ({
           <a href={getRouteForLanguage('/politica-de-privacidad', lang)} class="text-sm underline hover:text-accent transition-colors">
             {t.footer.privacyPolicy}
           </a>
+          <ul class="mt-2 flex justify-center md:justify-start gap-4" aria-label={t.footer.socialTitle}>
+            {socialLinks.map(({ href, label, Icon }) => (
+              <li>
+                <a href={href} rel="me" aria-label={label} title={label} class="block hover:text-accent transition-colors">
+                  <Icon />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
