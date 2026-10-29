@@ -1,7 +1,7 @@
 import { BUSINESS, PROBODA_URL, absoluteUrl, buildWhatsAppHref } from '../lib/site';
 import { slugify } from '../lib/typography';
 import type { LocationEntry } from './locations';
-import { getLaunchedLocations } from './locations';
+import { getLaunchedLocations, placeWithProvince } from './locations';
 import {
   getRecommendedSuppliersForLocation,
   type RecommendedSupplier,
@@ -271,7 +271,7 @@ const buildCityAnswerCards = (location: LocationEntry): AnswerCard[] => [
   },
   {
     title: `Dónde trabaja en ${location.province}`,
-    body: `Cubre bodas en ${location.city}, ${location.province} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
+    body: `Cubre bodas en ${placeWithProvince(location)} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
   },
   {
     title: `Cómo transforma tu boda o evento en ${location.city}`,
@@ -668,10 +668,6 @@ const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
         {
           question: '¿Se puede personalizar el repertorio para vuestra boda en Murcia?',
           answer: personalizationAnswer,
-        },
-        {
-          question: fitQuestion,
-          answer: fitAnswer,
         },
       ];
     case 'saxofonista-para-bodas-en-madrid':
