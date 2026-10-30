@@ -34,6 +34,9 @@ export interface LocationEntry {
   relatedSlugs: string[];
 }
 
+export const placeWithProvince = ({ city, province }: Pick<LocationEntry, 'city' | 'province'>) =>
+  city === province ? city : `${city}, ${province}`;
+
 type Seed = [
   city: string,
   province: string,
@@ -81,7 +84,7 @@ const createLocation = (seed: Seed): LocationEntry => {
     faqVariants: {
       price: `El presupuesto en ${city} depende de la fecha, el lugar, el desplazamiento, la duración y si queréis uno o varios momentos de actuación.`,
       fit: `En ${city} el saxo encaja muy bien cuando buscáis elegancia en la ceremonia, buen ambiente en el cóctel y una entrada potente en la fiesta.`,
-      travel: `Trabajo bodas en ${city}, ${province} y zonas cercanas como ${nearbyAreas.join(', ')}, coordinando horarios, montaje y desplazamiento con cada espacio.`,
+      travel: `Trabajo bodas en ${placeWithProvince({ city, province })} y zonas cercanas como ${nearbyAreas.join(', ')}, coordinando horarios, montaje y desplazamiento con cada espacio.`,
       timing: `En ${city} conviene consultar disponibilidad cuanto antes, sobre todo para primavera, verano y sábados con más demanda.`,
       personalization: `El repertorio y la intensidad del directo se ajustan en ${city} al tipo de boda, al espacio y al momento que queréis destacar.`,
     },
