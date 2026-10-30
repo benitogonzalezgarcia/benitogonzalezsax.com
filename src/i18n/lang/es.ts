@@ -168,6 +168,7 @@ export const es = {
   landing: {
     hero: {
       trustTitle: '¿Por qué contar con mis servicios?',
+      breadcrumbAriaLabel: 'Ruta de navegación',
       stats: {
         eventsValue: '+200',
         eventsLine1: 'Eventos',

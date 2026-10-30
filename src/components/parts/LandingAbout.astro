@@ -22,8 +22,8 @@ const introDemoPoster = getYouTubePosterUrl(introDemoVideo.url);
 ---
 
 <section id={t.nav.about.anchor} class="bg-white py-20">
-  <div class="container mx-auto px-4 md:hidden">
-    <div class="aspect-[9/16] overflow-hidden rounded-[2rem] bg-primary/5 shadow-lg">
+  <div class="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+    <div class="aspect-[9/16] overflow-hidden rounded-[2rem] bg-primary/5 shadow-lg md:aspect-video">
       <YouTube
         id={introDemoVideo.url}
         title={introDemoVideo.title}
@@ -32,25 +32,11 @@ const introDemoPoster = getYouTubePosterUrl(introDemoVideo.url);
         class="embed-fill"
       />
     </div>
-  </div>
-
-  <div class="container mx-auto hidden gap-12 px-4 md:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-    <div>
-      <div class="aspect-video overflow-hidden rounded-[2rem] bg-primary/5 shadow-lg">
-        <YouTube
-          id={introDemoVideo.url}
-          title={introDemoVideo.title}
-          playlabel={introDemoVideo.title}
-          poster={introDemoPoster}
-          class="embed-fill"
-        />
-      </div>
-    </div>
     <div>
       <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
         {t.landing.about.eyebrow}
       </p>
-      <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+      <h2 class="mt-4 font-segmentA text-[3rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
         {stripSegmentAAccents(page.introTitle)}
       </h2>
       <div class="mt-6 space-y-4 text-lg leading-8 text-gray-700">
@@ -61,28 +47,3 @@ const introDemoPoster = getYouTubePosterUrl(introDemoVideo.url);
     </div>
   </div>
 </section>
-
-<details class="group border-t border-gray-200 bg-white md:hidden [&_summary::-webkit-details-marker]:hidden">
-  <summary class="cursor-pointer list-none">
-    <div class="container mx-auto flex items-center justify-between gap-6 px-4 py-6">
-      <span class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent">
-        {t.landing.about.eyebrow}
-      </span>
-      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/30 text-[1.6rem] leading-none text-primary transition duration-300 group-open:rotate-45">
-        +
-      </span>
-    </div>
-  </summary>
-  <section class="bg-white pb-20 pt-2">
-    <div class="container mx-auto px-4">
-      <h2 class="font-segmentA text-[3rem] font-bold uppercase tracking-[0.08em] text-primary">
-        {stripSegmentAAccents(page.introTitle)}
-      </h2>
-      <div class="mt-5 space-y-4 text-lg leading-8 text-gray-700">
-        {page.introParagraphs.map((paragraph) => (
-          <p>{paragraph}</p>
-        ))}
-      </div>
-    </div>
-  </section>
-</details>
