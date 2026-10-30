@@ -70,7 +70,7 @@ This is a **static Astro site** for a saxophone musician's portfolio, with bilin
   - Spanish landing page sections: `LandingHero`, `LandingAbout`, `LandingServices`, `LandingAnswerBlock`, `LandingVideos`, `LandingRepertoire`, `LandingPacks`, `LandingTestimonials`, `LandingContact`, `LandingFaq`, `LandingCities`, `LandingFloatingCta`
   - Shared UI: `Header`, `Footer`, `LanguagePicker`
 - `src/components/pages/WeddingLandingPage.astro` — thin composition layer; imports and renders all `Landing*` section components in order, plus a small script that opens accordion sections when navigating to a hash anchor.
-- Most `Landing*` sections (everything after `LandingAbout`) are rendered as `<details>` accordion elements. `LandingContact` starts open (`open` attribute). `LandingAbout` uses a mobile/desktop split: the `<section id="propuesta">` shows an embedded video; a sibling `<details>` (mobile-only, `md:hidden`) accordion reveals the text content.
+- Most `Landing*` sections (everything after `LandingAbout`) are rendered as `<details>` accordion elements. `LandingContact` starts open (`open` attribute). `LandingAbout` is the exception: a single always-visible `<section id="propuesta">` with the video and intro text rendered once (video stacks above text on mobile). `LandingBio` ("Sobre el músico") is an accordion like the rest.
 - `src/lib/typography.ts` — `stripSegmentAAccents` (strips NFD diacritics for Segment A font rendering) and `slugify`; import from here rather than duplicating the logic.
 - `src/components/animations/` — `FadeIn.astro` and `Counter.astro` use Intersection Observer via inline `<script define:vars={...}>` (no JS framework)
 - Pages in `src/pages/` simply import and compose the section components
