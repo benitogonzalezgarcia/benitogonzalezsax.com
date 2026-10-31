@@ -3,7 +3,8 @@ import { getEnglishLocationName, type LocationEntry } from '../data/locations';
 import { PRICE_SCHEMA_PILOT_SLUGS, priceRange } from '../data/prices';
 import { en } from '../i18n/lang/en';
 import { es } from '../i18n/lang/es';
-import { BUSINESS, DEFAULT_OG_IMAGE, absoluteUrl } from './site';
+import AboutImage from '../assets/about-image.jpg';
+import { BUSINESS, absoluteUrl } from './site';
 
 // One canonical id for the musician so every page's founder/employee link
 // resolves to the same entity instead of a per-URL duplicate.
@@ -176,7 +177,8 @@ export const buildPageSchemas = (
             '@type': 'Product',
             name: page.heroTitle,
             description: page.description,
-            image: absoluteUrl(DEFAULT_OG_IMAGE),
+            // Same photo as the mobile hero fallback.
+            image: absoluteUrl(AboutImage.src),
             brand: { '@type': 'Brand', name: BUSINESS.name },
             offers: {
               '@type': 'AggregateOffer',

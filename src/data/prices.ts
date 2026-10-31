@@ -1,22 +1,36 @@
 import type { LocationEntry } from './locations';
 
+type PriceId =
+  | 'ceremonia'
+  | 'coctel'
+  | 'banquete'
+  | 'barraLibre'
+  | 'ceremoniaCoctel'
+  | 'banqueteBarraLibre'
+  | 'bodaCompleta'
+  | 'eventos';
+
 export interface PriceRow {
+  id: PriceId;
   moment: string;
   duration?: string;
   basic: number;
   premium: number;
 }
 
+// Update together with BASE_PRICES: shown as "Precios actualizados · …".
+export const PRICES_UPDATED = 'noviembre 2026';
+
 // Zone 1 base prices; other zones add travel (fuel, plus hotel and meals for zone 3).
 const BASE_PRICES: PriceRow[] = [
-  { moment: 'Ceremonia', duration: '~45 min', basic: 399, premium: 600 },
-  { moment: 'Cóctel', duration: '1–1,5 h', basic: 450, premium: 700 },
-  { moment: 'Banquete', duration: '~2 h', basic: 490, premium: 700 },
-  { moment: 'Barra libre Saxo + DJ (DJ no incluido)', duration: 'En sets', basic: 550, premium: 780 },
-  { moment: 'Ceremonia + cóctel', basic: 599, premium: 780 },
-  { moment: 'Banquete + barra libre', basic: 650, premium: 840 },
-  { moment: 'Boda completa', basic: 999, premium: 1299 },
-  { moment: 'Eventos y fiestas', duration: '~1,5 h', basic: 399, premium: 780 },
+  { id: 'ceremonia', moment: 'Ceremonia', duration: '~45 min', basic: 399, premium: 600 },
+  { id: 'coctel', moment: 'Cóctel', duration: '1–1,5 h', basic: 450, premium: 700 },
+  { id: 'banquete', moment: 'Banquete', duration: '~2 h', basic: 490, premium: 700 },
+  { id: 'barraLibre', moment: 'Barra libre Saxo + DJ (DJ no incluido)', duration: 'En sets', basic: 550, premium: 780 },
+  { id: 'ceremoniaCoctel', moment: 'Ceremonia + cóctel', basic: 599, premium: 780 },
+  { id: 'banqueteBarraLibre', moment: 'Banquete + barra libre', basic: 650, premium: 840 },
+  { id: 'bodaCompleta', moment: 'Boda completa', basic: 999, premium: 1299 },
+  { id: 'eventos', moment: 'Eventos y fiestas', duration: '~1,5 h', basic: 399, premium: 780 },
 ];
 
 const ZONE_1_PROVINCES = ['Murcia', 'Alicante', 'Almería'];
@@ -39,7 +53,7 @@ export const getPriceRows = (location?: LocationEntry): PriceRow[] => {
   return BASE_PRICES.map((row) => ({ ...row, basic: row.basic + surcharge, premium: row.premium + surcharge }));
 };
 
-export const priceOf = (rows: PriceRow[], moment: string) => rows.find((row) => row.moment === moment)!;
+export const priceOf = (rows: PriceRow[], id: PriceId) => rows.find((row) => row.id === id)!;
 
 export const priceRange = (rows: PriceRow[]) => ({
   min: Math.min(...rows.map((row) => row.basic)),
@@ -50,3 +64,5 @@ export const priceRange = (rows: PriceRow[]) => ({
 
 // es-ES skips the thousands separator for 4-digit numbers; prices need "1.299 €".
 export const euros = (amount: number) => `${String(amount).replace(/\B(?=(\d{3})+$)/g, '.')} €`;
+
+export const eurosEn = (amount: number) => `€${amount.toLocaleString('en-GB')}`;

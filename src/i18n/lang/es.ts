@@ -229,7 +229,7 @@ export const es = {
       previewAlt: 'Vista previa del repertorio',
     },
     packs: {
-      eyebrow: 'Precios actualizados · noviembre 2026',
+      eyebrow: 'Precios actualizados',
       tableCaption: 'Precios de saxofonista por momento de la boda y evento',
       momentLabel: 'Momento',
       basicLabel: 'Pack Básico',
