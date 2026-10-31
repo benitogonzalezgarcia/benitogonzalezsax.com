@@ -53,7 +53,7 @@ export const es = {
     title: 'Sobre mí',
     imageAlt: 'Benito González García - Saxofonista',
     paragraph1:
-      'Soy Benito González García, saxofonista profesional con más de 10 años de experiencia, especializado en eventos exclusivos. Desde mis inicios, mi pasión por el saxofón me ha llevado a perfeccionar mi técnica y estilo, destacando en bodas, eventos corporativos, discotecas y presentaciones de marca.',
+      'Soy Benito González García, saxofonista profesional con más de 11 años de experiencia, especializado en eventos exclusivos. Desde mis inicios, mi pasión por el saxofón me ha llevado a perfeccionar mi técnica y estilo, destacando en bodas, eventos corporativos, discotecas y presentaciones de marca.',
     paragraph2:
       "He tenido el honor de actuar en numerosos eventos, desde bodas íntimas hasta grandes celebraciones corporativas, aportando un toque de elegancia y emoción con mi música en vivo. Trabajo con marcas reconocidas como Martin Miller's Gin e IQOS, ofreciendo un servicio musical de alto nivel.",
     paragraph3:
@@ -190,16 +190,17 @@ export const es = {
     },
     bio: {
       eyebrow: 'Sobre el músico',
-      title: 'Quién toca en vuestra boda',
+      title: 'Benito González, saxofonista profesional',
       paragraphs: [
-        'Benito González García es saxofonista profesional con título de grado profesional por el Conservatorio de Lorca y más de 10 años tocando en directo. Trabaja desde Mazarrón (Murcia) y cubre bodas y eventos en la Península y Baleares.',
-        'Además de bodas, ha puesto música a eventos de marca para Martin Miller’s Gin e IQOS. Toca solo con bases, junto a DJ o con saxo con leds, con repertorio de jazz, house, afrohouse, EDM, pop y latino.',
+        'Benito González García es saxofonista profesional con título de grado profesional por el Conservatorio de Lorca y más de 11 años tocando en directo, con más de 300 bodas y eventos. Trabaja desde Mazarrón (Murcia) y cubre bodas y eventos en la Península y Baleares.',
+        'Además de bodas, ha tocado en hoteles de 4 y 5 estrellas como Higuerón Hotel Málaga, Curio Collection by Hilton; Hotel Montera Madrid, Curio Collection by Hilton, y Meliá Villaitana (Benidorm), en presentaciones de marca para Martin Miller’s Gin e IQOS y en fiestas privadas. Toca solo con bases, junto a DJ o con saxo con leds, con repertorio de jazz, house, afrohouse, EDM, pop y latino.',
       ],
       probodaPrefix: 'También ha creado ',
       probodaSuffix: ', un directorio de proveedores de bodas que ayuda a las parejas a organizar su gran día.',
       venuesLabel: 'Espacios donde ha actuado',
       venues: [
-        'Hotel Reserva del Higuerón, Málaga',
+        'Higuerón Hotel Málaga, Curio Collection by Hilton',
+        'Hotel Montera Madrid, Curio Collection by Hilton',
         'Meliá Villaitana, Benidorm',
         'Castell d’Empordà, Girona',
         'Larache Eventos, Murcia',

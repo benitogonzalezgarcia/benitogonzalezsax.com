@@ -571,7 +571,7 @@ const buildCityTrustPoints = (rows: PriceRow[]) =>
 
 const buildDifferentiatedIntroParagraphs = (location: LocationEntry) => [
   `${location.serviceContext} ${location.logisticsAngle}`,
-  `Benito González, con más de 300 bodas y eventos y más de 10 años de experiencia, se adapta al estilo de la pareja, al lugar de la celebración y al tipo de ambiente que queréis crear para vuestra boda o evento en ${location.city}. ${location.musicAngle}`,
+  `Benito González, con más de 300 bodas y eventos y más de 11 años de experiencia, se adapta al estilo de la pareja, al lugar de la celebración y al tipo de ambiente que queréis crear para vuestra boda o evento en ${location.city}. ${location.musicAngle}`,
 ];
 
 const buildCityExtrasIntro = (location: LocationEntry) =>
@@ -1096,7 +1096,7 @@ export const buildHomePageData = (): LandingPageData => ({
     'Desde la ceremonia hasta la barra libre, la música se adapta al estilo de la pareja y al ritmo real de la celebración para que todo fluya de forma natural.',
   ],
   trustPoints: [
-    'Más de 10 años de experiencia actuando en bodas, eventos privados y celebraciones de marca.',
+    'Más de 11 años de experiencia actuando en bodas, eventos privados y celebraciones de marca.',
     'Formato adaptable a bodas elegantes, bodas de destino y celebraciones con Saxo + DJ.',
     'Disponible para bodas en ciudades de la Península y Baleares, con desplazamiento según fecha y lugar del evento.',
   ],

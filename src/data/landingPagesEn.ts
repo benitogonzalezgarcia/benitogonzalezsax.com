@@ -624,7 +624,7 @@ const buildCityIntroParagraphs = (location: LocationEntry) => {
 
   return [
     `${profile.intro} ${profile.logistics}`,
-    `Benito Gonzalez has performed at more than 200 events and brings over 10 years of experience to weddings and private celebrations. ${profile.music}`,
+    `Benito Gonzalez has performed at more than 200 events and brings over 11 years of experience to weddings and private celebrations. ${profile.music}`,
   ];
 };
 
@@ -724,7 +724,7 @@ export const buildEnglishHomePageData = (): LandingPageData => ({
     'Professional, reliable and easy to book from abroad, the service is designed for couples, planners and clients who want elegant wedding entertainment without logistical stress.',
   ],
   trustPoints: [
-    'More than 10 years of experience performing at weddings, private events and brand celebrations.',
+    'More than 11 years of experience performing at weddings, private events and brand celebrations.',
     'Adaptable format for elegant weddings, destination weddings and Sax + DJ celebrations.',
     'Available for weddings and events across mainland Spain and the Balearic Islands, depending on date and venue.',
     'Fluent in English and French.',
