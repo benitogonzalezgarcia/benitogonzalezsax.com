@@ -407,13 +407,13 @@ const sharedEventServices: LandingServiceCard[] = [
 const sharedServiceTypes = ['Ceremony', 'Cocktail hour', 'Banquet', 'Open bar', 'Sax + DJ'];
 
 const buildPriceEstimateSentence = (place?: string) =>
-  `As a guide, the Premium package is around €600-€1,000 and the Basic package around €400-€700, depending on the date and travel${place ? ` to ${place}` : ''}.`;
+  `As a guide, the Premium package is around €600-€1,299 and the Basic package around €399-€999, depending on the date and travel${place ? ` to ${place}` : ''}.`;
 
 const sharedWeddingPacks: WeddingPack[] = [
   {
     name: 'Premium',
     tagline: 'A more personalised performance',
-    priceEstimate: '€600 - €1,000 approx.',
+    priceEstimate: '€600 - €1,299 approx.',
     bullets: [
       'Choose your favourite songs, whether they are already in the repertoire or not.',
       'Personalise your event in detail, with LED saxophone available as part of the experience.',
@@ -424,7 +424,7 @@ const sharedWeddingPacks: WeddingPack[] = [
   {
     name: 'Basic',
     tagline: 'A simple and effective live set',
-    priceEstimate: '€400 - €700 approx.',
+    priceEstimate: '€399 - €999 approx.',
     bullets: [
       'Choose the style you need for your event without having to define every song.',
       'Performance based on the repertoire list, with LED saxophone and extra personalisation available as add-ons.',

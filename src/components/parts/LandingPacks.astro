@@ -1,6 +1,7 @@
 ---
 import type { LandingPageData } from '../../data/landingPages';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { euros } from '../../data/prices';
 import { stripSegmentAAccents } from '../../lib/typography';
 import LandingAccordionSection from './LandingAccordionSection.astro';
 
@@ -84,6 +85,42 @@ const t = useTranslations(getLangFromUrl(Astro.url));
           </article>
         ))}
       </div>
+
+      {page.priceRows && (
+      <div class="mt-8 overflow-hidden rounded-[1.9rem] border border-gray-200 bg-gray-50 p-6 shadow-sm md:p-7">
+        <table class="w-full text-left">
+          <caption class="sr-only">{t.landing.packs.tableCaption}</caption>
+          <thead>
+            <tr class="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-accent md:text-[0.9rem] md:tracking-[0.24em]">
+              <th scope="col" class="pb-4 pr-3">{t.landing.packs.momentLabel}</th>
+              <th scope="col" class="pb-4 pr-3 text-right">{t.landing.packs.basicLabel}</th>
+              <th scope="col" class="pb-4 text-right">{t.landing.packs.premiumLabel}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {page.priceRows.map((row) => (
+              <tr class="border-t border-gray-200">
+                <th scope="row" class="py-3 pr-3 text-base font-normal leading-6 text-gray-700">
+                  {row.moment}
+                  {row.duration && <span class="block text-sm text-gray-500">{row.duration}</span>}
+                </th>
+                <td class="whitespace-nowrap py-3 pr-3 text-right text-lg font-semibold text-primary">{euros(row.basic)}</td>
+                <td class="whitespace-nowrap py-3 text-right text-lg font-semibold text-primary">{euros(row.premium)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <ul class="mt-6 space-y-3">
+          {page.priceNotes?.map((note) => (
+            <li class="flex gap-3">
+              <span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-accent"></span>
+              <span class="text-base leading-7 text-gray-700">{note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      )}
     </div>
   </section>
 </LandingAccordionSection>

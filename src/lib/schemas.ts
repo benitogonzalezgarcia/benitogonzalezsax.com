@@ -1,8 +1,9 @@
 import type { LandingPageData } from '../data/landingPages';
 import { getEnglishLocationName, type LocationEntry } from '../data/locations';
+import { PRICE_SCHEMA_PILOT_SLUGS, priceRange } from '../data/prices';
 import { en } from '../i18n/lang/en';
 import { es } from '../i18n/lang/es';
-import { BUSINESS, absoluteUrl } from './site';
+import { BUSINESS, DEFAULT_OG_IMAGE, absoluteUrl } from './site';
 
 // One canonical id for the musician so every page's founder/employee link
 // resolves to the same entity instead of a per-URL duplicate.
@@ -167,6 +168,26 @@ export const buildPageSchemas = (
       })),
     },
     person,
+    // Pilot: Product + AggregateOffer is what renders a price in results; Offer on a Service renders nothing.
+    ...(page.priceRows && location && PRICE_SCHEMA_PILOT_SLUGS.includes(location.slug)
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: page.heroTitle,
+            description: page.description,
+            image: absoluteUrl(DEFAULT_OG_IMAGE),
+            brand: { '@type': 'Brand', name: BUSINESS.name },
+            offers: {
+              '@type': 'AggregateOffer',
+              priceCurrency: 'EUR',
+              lowPrice: priceRange(page.priceRows).min,
+              highPrice: priceRange(page.priceRows).max,
+              offerCount: page.priceRows.length * 2,
+            },
+          },
+        ]
+      : []),
     ...(page.breadcrumb
       ? [
           {

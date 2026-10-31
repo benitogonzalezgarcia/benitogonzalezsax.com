@@ -109,6 +109,11 @@ const breadcrumb = page.breadcrumb ?? [];
             </li>
           ))}
         </ul>
+        {page.type === 'city' && page.priceRows && (
+          <a href="#packs" class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.1em] text-accent underline-offset-4 hover:underline">
+            {t.landing.hero.pricesLink} →
+          </a>
+        )}
         <div class="mt-8 grid gap-3 sm:grid-cols-3">
           <div class="rounded-2xl bg-white/10 p-3.5 text-center">
             <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.eventsValue}</p>
