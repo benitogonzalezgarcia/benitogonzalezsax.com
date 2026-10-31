@@ -1,3 +1,4 @@
+import { eurosEn, getPriceRows, priceRange, type PriceRow } from './prices';
 import type {
   AnswerCard,
   LandingFaq,
@@ -406,14 +407,19 @@ const sharedEventServices: LandingServiceCard[] = [
 
 const sharedServiceTypes = ['Ceremony', 'Cocktail hour', 'Banquet', 'Open bar', 'Sax + DJ'];
 
-const buildPriceEstimateSentence = (place?: string) =>
-  `As a guide, the Premium package is around €600-€1,000 and the Basic package around €400-€700, depending on the date and travel${place ? ` to ${place}` : ''}.`;
+// Ranges mirror the Spanish sibling page, which shares the same zone prices.
+const buildPriceEstimateSentence = (rows: PriceRow[], place?: string) => {
+  const { min, max, basicMax, premiumMin } = priceRange(rows);
+  return `As a guide, the Premium package is around ${eurosEn(premiumMin)}-${eurosEn(max)} and the Basic package around ${eurosEn(min)}-${eurosEn(basicMax)}, depending on the date and travel${place ? ` to ${place}` : ''}.`;
+};
 
-const sharedWeddingPacks: WeddingPack[] = [
+const buildWeddingPacks = (rows: PriceRow[]): WeddingPack[] => {
+  const { min, max, basicMax, premiumMin } = priceRange(rows);
+  return [
   {
     name: 'Premium',
     tagline: 'A more personalised performance',
-    priceEstimate: '€600 - €1,000 approx.',
+    priceEstimate: `${eurosEn(premiumMin)} - ${eurosEn(max)} approx.`,
     bullets: [
       'Choose your favourite songs, whether they are already in the repertoire or not.',
       'Personalise your event in detail, with LED saxophone available as part of the experience.',
@@ -424,14 +430,15 @@ const sharedWeddingPacks: WeddingPack[] = [
   {
     name: 'Basic',
     tagline: 'A simple and effective live set',
-    priceEstimate: '€400 - €700 approx.',
+    priceEstimate: `${eurosEn(min)} - ${eurosEn(basicMax)} approx.`,
     bullets: [
       'Choose the style you need for your event without having to define every song.',
       'Performance based on the repertoire list, with LED saxophone and extra personalisation available as add-ons.',
       'A practical option for couples who want a strong live performance without overcomplicating the planning.',
     ],
   },
-];
+  ];
+};
 
 const sharedVideos: LandingVideo[] = [
   {
@@ -572,7 +579,7 @@ const buildHomeFaqs = (): LandingFaq[] => [
   {
     question: 'How much does it cost to hire a saxophonist for a wedding or event?',
     answer:
-      `The price depends on the city, travel, duration, number of performance moments and whether the format is solo saxophone, corporate entertainment or Sax + DJ. ${buildPriceEstimateSentence()}`,
+      `The price depends on the city, travel, duration, number of performance moments and whether the format is solo saxophone, corporate entertainment or Sax + DJ. ${buildPriceEstimateSentence(getPriceRows())}`,
   },
   {
     question: 'How much is a saxophonist for 1 hour in Spain?',
@@ -617,7 +624,7 @@ const buildCityIntroParagraphs = (location: LocationEntry) => {
 
   return [
     `${profile.intro} ${profile.logistics}`,
-    `Benito Gonzalez has performed at more than 200 events and brings over 10 years of experience to weddings and private celebrations. ${profile.music}`,
+    `Benito Gonzalez has performed at more than 200 events and brings over 11 years of experience to weddings and private celebrations. ${profile.music}`,
   ];
 };
 
@@ -662,7 +669,7 @@ const buildCityFaqs = (location: LocationEntry): LandingFaq[] => {
   return [
     {
       question: `How much does it cost to hire a saxophonist for a wedding or event in ${place}?`,
-      answer: `The price depends on the date, venue, travel, duration and the number of performance moments. In ${place}, the type of venue, local logistics and event style can also affect the quote. ${buildPriceEstimateSentence(place)}`,
+      answer: `The price depends on the date, venue, travel, duration and the number of performance moments. In ${place}, the type of venue, local logistics and event style can also affect the quote. ${buildPriceEstimateSentence(getPriceRows(location), place)}`,
     },
     {
       question: `How much is a saxophonist for 1 hour in ${place}?`,
@@ -717,7 +724,7 @@ export const buildEnglishHomePageData = (): LandingPageData => ({
     'Professional, reliable and easy to book from abroad, the service is designed for couples, planners and clients who want elegant wedding entertainment without logistical stress.',
   ],
   trustPoints: [
-    'More than 10 years of experience performing at weddings, private events and brand celebrations.',
+    'More than 11 years of experience performing at weddings, private events and brand celebrations.',
     'Adaptable format for elegant weddings, destination weddings and Sax + DJ celebrations.',
     'Available for weddings and events across mainland Spain and the Balearic Islands, depending on date and venue.',
     'Fluent in English and French.',
@@ -743,7 +750,7 @@ export const buildEnglishHomePageData = (): LandingPageData => ({
   packsTitle: 'Wedding packages',
   packsIntro:
     'Two ways to plan the performance depending on the level of personalisation you want for your wedding or event, your ideal repertoire and your budget.',
-  packs: sharedWeddingPacks,
+  packs: buildWeddingPacks(getPriceRows()),
   packPreviewImages,
   repertoireTitle: 'Flexible repertoire for every moment',
   repertoireIntro:
@@ -822,7 +829,7 @@ export const buildEnglishCityPageData = (location: LocationEntry): LandingPageDa
     packsTitle: `Wedding and event packages in ${place}`,
     packsIntro:
       'Two ways to plan the performance depending on the level of personalisation you want for your wedding or event, your ideal repertoire and your budget.',
-    packs: sharedWeddingPacks,
+    packs: buildWeddingPacks(getPriceRows(location)),
     packPreviewImages,
     repertoireTitle: `Wedding and event repertoire in ${place}`,
     repertoireIntro:

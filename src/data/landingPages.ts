@@ -1,6 +1,7 @@
 import { BUSINESS, PROBODA_URL, absoluteUrl, buildWhatsAppHref } from '../lib/site';
 import { slugify } from '../lib/typography';
 import type { LocationEntry } from './locations';
+import { euros, getPriceRows, priceOf, priceRange, type PriceRow } from './prices';
 import { getLaunchedLocations, placeWithProvince } from './locations';
 import {
   getRecommendedSuppliersForLocation,
@@ -90,6 +91,8 @@ export interface LandingPageData {
   packsTitle: string;
   packsIntro: string;
   packs: WeddingPack[];
+  priceRows?: PriceRow[];
+  priceNotes?: string[];
   packPreviewImages: string[];
   repertoireTitle: string;
   repertoireIntro: string;
@@ -283,29 +286,49 @@ const buildCityAnswerCards = (location: LocationEntry): AnswerCard[] => [
   },
 ];
 
-const sharedWeddingPacks: WeddingPack[] = [
-  {
-    name: 'Premium',
-    tagline: 'Una actuación más allá de la carta',
-    priceEstimate: '600 - 1.000 € aprox.',
-    bullets: [
-      'Elige tus canciones favoritas, estén dentro del repertorio o no.',
-      'Personaliza al máximo tu evento, con opción de saxo con leds incluida.',
-      'Entradas, sorpresas, detalles y momentos especiales incluidos para que todo se sienta más vuestro.',
-      'Si el repertorio de la actuación es una de tus mayores preocupaciones, este es tu pack.',
-    ],
-  },
-  {
-    name: 'Básico',
-    tagline: 'Un menú delicioso de actuación',
-    priceEstimate: '400 - 700 € aprox.',
-    bullets: [
-      'Elige el estilo que necesites para tu evento, aunque no el repertorio concreto.',
-      'Actuación dentro de la carta de repertorio, con saxo con leds y otras personalizaciones disponibles como extra.',
-      'Una opción pensada para quien quiere disfrutar de un buen concierto a buen precio, sin complicarse con tanta personalización.',
-    ],
-  },
+const buildWeddingPacks = (rows: PriceRow[]): WeddingPack[] => {
+  const { min, premiumMin } = priceRange(rows);
+  return [
+    {
+      name: 'Premium',
+      tagline: 'Una actuación más allá de la carta',
+      priceEstimate: `Desde ${euros(premiumMin)}`,
+      bullets: [
+        'Elige tus canciones favoritas, estén dentro del repertorio o no.',
+        'Personaliza al máximo tu evento, con opción de saxo con leds incluida.',
+      ],
+    },
+    {
+      name: 'Básico',
+      tagline: 'Un menú delicioso de actuación',
+      priceEstimate: `Desde ${euros(min)}`,
+      bullets: [
+        'Elige el estilo que necesites para tu evento, aunque no el repertorio concreto.',
+        'Actuación dentro de la carta de repertorio, con saxo con leds y otras personalizaciones disponibles como extra.',
+      ],
+    },
+  ];
+};
+
+const priceNotes = [
+  'Siempre incluido: equipo de sonido de hasta 2.400 W y coordinación con DJ, wedding planner y salón.',
+  'Eventos y fiestas: cumpleaños, cenas de empresa, inauguraciones y celebraciones privadas.',
 ];
+
+// The homepage table shows zone 1 prices; city pages carry their own zone.
+const homePriceRows = getPriceRows();
+const homePriceNotes = [
+  ...priceNotes,
+  'Precios para la Región de Murcia, Alicante y Almería. Para otras provincias, consulta la página de tu ciudad.',
+];
+
+const buildPricesIntro = (rows: PriceRow[], city?: string) => {
+  const ceremony = priceOf(rows, 'ceremonia').basic;
+  const fullWedding = priceOf(rows, 'bodaCompleta').premium;
+  return city
+    ? `¿Cuánto cobra un saxofonista para una boda en ${city}? Entre ${euros(ceremony)} por la ceremonia y ${euros(fullWedding)} por la boda completa con pack Premium. El precio depende del momento, la duración y el pack, y el desplazamiento a ${city} ya está incluido.`
+    : `¿Cuánto cobra un saxofonista para una boda? Desde ${euros(ceremony)} por la ceremonia y desde ${euros(fullWedding)} por la boda completa con pack Premium. El precio final depende del momento, la duración, el pack y la provincia de la boda.`;
+};
 
 const sharedVideos: LandingVideo[] = [
   {
@@ -451,8 +474,12 @@ const repertoirePreviewImages = [
 
 const packPreviewImages = ['/packs/premium.svg', '/packs/basico.svg'];
 
-const buildPriceEstimateSentence = (city?: string) =>
-  `Aproximadamente el pack Premium sería de 600 a 1.000 € y el pack Básico de 400 a 700 €, dependiendo de la fecha y el desplazamiento${city ? ` a ${city}` : ''}.`;
+const buildPriceEstimateSentence = (rows: PriceRow[], city?: string) => {
+  const { min, max, basicMax, premiumMin } = priceRange(rows);
+  return city
+    ? `El pack Básico va de ${euros(min)} a ${euros(basicMax)} y el pack Premium de ${euros(premiumMin)} a ${euros(max)}, con el desplazamiento a ${city} incluido.`
+    : `El pack Básico parte de ${euros(min)} y el pack Premium de ${euros(premiumMin)}, según el momento y la provincia.`;
+};
 
 const sharedHomeFaqs: LandingFaq[] = [
   {
@@ -463,7 +490,7 @@ const sharedHomeFaqs: LandingFaq[] = [
   {
     question: '¿Cuánto cuesta contratar a un saxofonista para una boda?',
     answer:
-      `El precio depende de la ciudad, el desplazamiento, la duración, los momentos de la boda en los que quieras saxo y si el formato es solo o junto a DJ. La mejor forma de recibir una cifra realista es pedir presupuesto con fecha, lugar y tipo de servicio. ${buildPriceEstimateSentence()}`,
+      `El precio depende de la ciudad, el desplazamiento, la duración, los momentos de la boda en los que quieras saxo y si el formato es solo o junto a DJ. La mejor forma de recibir una cifra realista es pedir presupuesto con fecha, lugar y tipo de servicio. ${buildPriceEstimateSentence(homePriceRows)}`,
   },
   {
     question: '¿Es apropiado tocar el saxofón en una boda?',
@@ -536,26 +563,26 @@ const buildNearbyLinks = (location: LocationEntry): LandingLink[] => {
     }));
 };
 
-const buildCityTrustPoints = (location: LocationEntry) => [
-  `Cobertura habitual en ${location.city} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
-  `Formato adaptable a ceremonia, cóctel, banquete, barra libre y servicio Saxo + DJ en ${location.city}.`,
-  `Propuesta pensada para adaptarse al estilo de bodas en ${location.city} y a espacios como ${location.venueStyle}.`,
-];
+const buildCityTrustPoints = (rows: PriceRow[]) =>
+  (['ceremonia', 'coctel', 'banquete', 'barraLibre'] as const).map((id) => {
+    const row = priceOf(rows, id);
+    return `${row.moment} desde ${euros(row.basic)}`;
+  });
 
 const buildDifferentiatedIntroParagraphs = (location: LocationEntry) => [
   `${location.serviceContext} ${location.logisticsAngle}`,
-  `Benito González, con más de 200 eventos y más de 10 años de experiencia, se adapta al estilo de la pareja, al lugar de la celebración y al tipo de ambiente que queréis crear para vuestra boda o evento en ${location.city}. ${location.musicAngle}`,
+  `Benito González, con más de 300 bodas y eventos y más de 11 años de experiencia, se adapta al estilo de la pareja, al lugar de la celebración y al tipo de ambiente que queréis crear para vuestra boda o evento en ${location.city}. ${location.musicAngle}`,
 ];
 
 const buildCityExtrasIntro = (location: LocationEntry) =>
   `En ${location.city}, ceremonia, cóctel, banquete y barra libre suelen vivirse en espacios y tiempos muy distintos. El saxo en directo ayuda a dar continuidad al evento y a que cada bloque encaje con el ritmo real de la boda en ${location.city}.`;
 
-const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
+const buildDifferentiatedCityFaqs = (location: LocationEntry, priceRows: PriceRow[]): LandingFaq[] => {
   const serviceIncludesQuestion = `¿Qué incluye el servicio de saxofonista para bodas en ${location.city}?`;
   const priceQuestion = `¿Cuánto cuesta contratar a un saxofonista para una boda en ${location.city}?`;
   const fitQuestion = `¿Es apropiado tocar el saxofón en una boda en ${location.city}?`;
   const serviceIncludesAnswer = `En ${location.city}, el servicio puede incluir ceremonia, cóctel, banquete, barra libre, entrada al banquete y formato Saxo + DJ, según el tipo de celebración, el lugar y el ambiente que queráis crear. La propuesta se adapta bien tanto a bodas en ${location.venueStyle} como a celebraciones donde cada momento del día necesita una energía distinta.`;
-  const priceAnswer = `${location.faqVariants.price} En ${location.city}, el presupuesto también suele depender del estilo de la boda, del tipo de espacio y de cómo se reparta la actuación entre ceremonia, cóctel, banquete o fiesta. ${buildPriceEstimateSentence(location.city)} Si compartís fecha, lugar y momentos de actuación, se puede preparar una propuesta realista para ${location.city}.`;
+  const priceAnswer = `${buildPriceEstimateSentence(priceRows, location.city)} En ${location.city}, el precio final depende del estilo de la boda, del tipo de espacio y de cómo se reparta la actuación entre ceremonia, cóctel, banquete o fiesta. Si compartís fecha, lugar y momentos de actuación, se puede preparar una propuesta realista para ${location.city}.`;
   const fitAnswer = `${location.faqVariants.fit} En ${location.city}, donde muchas bodas se viven con un ritmo muy marcado por el espacio, el cóctel y la fiesta final, el saxo aporta elegancia al principio y más presencia cuando el ambiente pide subir la energía.`;
   const travelAnswer = location.faqVariants.travel;
   const timingAnswer = location.faqVariants.timing;
@@ -1069,7 +1096,7 @@ export const buildHomePageData = (): LandingPageData => ({
     'Desde la ceremonia hasta la barra libre, la música se adapta al estilo de la pareja y al ritmo real de la celebración para que todo fluya de forma natural.',
   ],
   trustPoints: [
-    'Más de 10 años de experiencia actuando en bodas, eventos privados y celebraciones de marca.',
+    'Más de 11 años de experiencia actuando en bodas, eventos privados y celebraciones de marca.',
     'Formato adaptable a bodas elegantes, bodas de destino y celebraciones con Saxo + DJ.',
     'Disponible para bodas en ciudades de la Península y Baleares, con desplazamiento según fecha y lugar del evento.',
   ],
@@ -1086,10 +1113,11 @@ export const buildHomePageData = (): LandingPageData => ({
     'Qué ofrece un saxofonista y como puede animar tu boda o evento',
   answerCards: buildHomeAnswerCards(),
   serviceTypes: sharedServiceTypes,
-  packsTitle: 'Packs para boda',
-  packsIntro:
-    'Dos formas de enfocar la actuación según el nivel de personalización que queráis para vuestra boda. Así podéis elegir el pack que mejor encaja con vuestro evento, vuestro repertorio ideal y vuestro presupuesto.',
-  packs: sharedWeddingPacks,
+  packsTitle: 'Precio de un saxofonista para bodas y eventos',
+  packsIntro: buildPricesIntro(homePriceRows),
+  packs: buildWeddingPacks(homePriceRows),
+  priceRows: homePriceRows,
+  priceNotes: homePriceNotes,
   packPreviewImages,
   repertoireTitle: 'Repertorio adaptable para cada momento',
   repertoireIntro:
@@ -1146,27 +1174,35 @@ const buildProbodaReferral = (location: LocationEntry): ProbodaReferral | undefi
 
 export const buildCityPageData = (location: LocationEntry): LandingPageData => {
   const recommendedSuppliers = getRecommendedSuppliersForLocation(location);
+  const priceRows = getPriceRows(location);
+  const { min, max } = priceRange(priceRows);
+  const titleSuffix = ` | Desde ${euros(min)}`;
+  // Keep the price inside Google's ~60-char title cut: drop "y eventos" first, then "para bodas".
+  const title =
+    [`Saxofonista para bodas y eventos en ${location.city}`, `Saxofonista para bodas en ${location.city}`]
+      .map((head) => head + titleSuffix)
+      .find((candidate) => candidate.length <= 60) ?? `Saxofonista en ${location.city}${titleSuffix}`;
 
   return {
     type: 'city',
-    title: `Saxofonista en ${location.city} para bodas | Benito González Sax`,
-    description: `Saxofonista en ${location.city} para bodas y eventos. Música en directo para ceremonia, cóctel, banquete y barra libre con presupuesto personalizado y cobertura en ${location.province}.`,
+    title,
+    description: `Saxofonista en directo para bodas y eventos en ${location.city}. Ceremonia desde ${euros(priceOf(priceRows, 'ceremonia').basic)}, cóctel ${euros(priceOf(priceRows, 'coctel').basic)} y boda completa ${euros(priceOf(priceRows, 'bodaCompleta').basic)}. Vídeos reales y 5★ en Google.`,
     canonicalPath: `/${location.slug}`,
-    heroTitle: `Saxofonista para bodas en ${location.city}`,
+    heroTitle: `Saxofonista para bodas y eventos en ${location.city}`,
     heroLabel:
       location.city === location.province
         ? `${location.city}, Provincia de ${location.province}`
         : `${location.city}, ${location.province}`,
-    trustTitle: `¿Por qué contar con mis servicios en ${location.city}?`,
-    heroSummary: `Saxofonista para bodas en ${location.city}.`,
-    heroBody: `Benito González ayuda a parejas de ${location.city} a montar una boda inolvidable con saxo en directo.`,
-    primaryCtaLabel: 'Consultar disponibilidad',
+    trustTitle: `Precios en ${location.city}`,
+    heroSummary: `Precios desde ${euros(min)} (pack Básico) hasta ${euros(max)} (pack completo Premium), con desplazamiento incluido.`,
+    heroBody: location.localIntro,
+    primaryCtaLabel: 'Pedir presupuesto',
     primaryCtaHref: '#contacto',
     secondaryCtaLabel: 'Ver vídeos',
     secondaryCtaHref: '#videos',
     introTitle: `Saxofonista en directo para bodas en ${location.city}`,
     introParagraphs: buildDifferentiatedIntroParagraphs(location),
-    trustPoints: buildCityTrustPoints(location),
+    trustPoints: buildCityTrustPoints(priceRows),
     serviceTitle: `Que servicios cubre un saxofonista para bodas en ${location.city}`,
     serviceDescription: `Cada boda es distinta, por eso el servicio se adapta al estilo del evento, al espacio y a los momentos que queréis destacar en ${location.city} y alrededores.`,
     moments: sharedMoments,
@@ -1180,9 +1216,11 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => {
     answerBlockIntro: `Qué ofrece Benito González Sax en ${location.city}, cómo transforma tu boda o evento, cómo trabaja y cómo reservar.`,
     answerCards: buildCityAnswerCards(location),
     serviceTypes: sharedServiceTypes,
-    packsTitle: `Packs para boda en ${location.city}`,
-    packsIntro: `Dos packs para que podáis elegir en ${location.city} entre una propuesta más cerrada basada en repertorio y otra más personalizada, pensada para entradas, sorpresas y canciones concretas.`,
-    packs: sharedWeddingPacks,
+    packsTitle: `Precio de un saxofonista para bodas y eventos en ${location.city}`,
+    packsIntro: buildPricesIntro(priceRows, location.city),
+    packs: buildWeddingPacks(priceRows),
+    priceRows,
+    priceNotes,
     packPreviewImages,
     repertoireTitle: `Repertorio para bodas en ${location.city}`,
     repertoireIntro:
@@ -1206,7 +1244,7 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => {
     testimonialsDescription: `Opiniones reales de clientes y parejas que ayudan a entender cómo se vive el servicio en una boda.`,
     testimonials: sharedTestimonials,
     faqTitle: `FAQ sobre contratar saxofonista para bodas en ${location.city}`,
-    faqs: buildDifferentiatedCityFaqs(location),
+    faqs: buildDifferentiatedCityFaqs(location, priceRows),
     contactTitle: `Pide presupuesto para tu boda en ${location.city}`,
     contactDescription: `Comparte fecha, lugar, ciudad y el momento de la boda en el que quieres el saxo. Así podré darte una propuesta para ${location.city} y alrededores.`,
     contactHighlight: `Si ya tenéis fecha y lugar, WhatsApp suele ser la vía más rápida para revisar disponibilidad en ${location.city}.`,

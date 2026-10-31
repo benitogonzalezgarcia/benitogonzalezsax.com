@@ -71,7 +71,8 @@ const createLocation = (seed: Seed): LocationEntry => {
     localIntro,
     faqAngle,
     testimonialTag: seed[9],
-    serviceContext: localIntro,
+    // localIntro is the hero lead; the intro paragraph opens with the angle instead.
+    serviceContext: `Especializado en ${serviceAngle}.`,
     logisticsAngle: `La propuesta se adapta al tipo de espacio, la coordinación con el lugar de celebración y la logística habitual de bodas en ${city}.`,
     musicAngle: `El directo funciona muy bien en ${city} cuando la boda necesita pasar de una atmósfera elegante a una fiesta con más energía sin perder coherencia.`,
     bookingAngle: `Lo más útil para cerrar una propuesta en ${city} es compartir fecha, lugar, momentos de actuación y el ambiente que queréis crear.`,
