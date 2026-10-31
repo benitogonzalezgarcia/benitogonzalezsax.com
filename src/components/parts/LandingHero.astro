@@ -110,20 +110,21 @@ const breadcrumb = page.breadcrumb ?? [];
           ))}
         </ul>
         {page.type === 'city' && page.priceRows && (
-          <a href="#packs" class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.1em] text-accent underline-offset-4 hover:underline">
-            {t.landing.hero.pricesLink} →
-          </a>
+          <div class="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold uppercase tracking-[0.1em]">
+            <a href="#packs" class="text-accent underline-offset-4 hover:underline">{t.landing.hero.pricesLink} →</a>
+            <a href={page.primaryCtaHref} class="text-white underline-offset-4 hover:underline">{t.landing.hero.quoteLink} →</a>
+          </div>
         )}
-        <div class="mt-8 grid gap-3 sm:grid-cols-3">
-          <div class="rounded-2xl bg-white/10 p-3.5 text-center">
+        <div class="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:gap-3">
+          <div class="rounded-2xl bg-white/10 px-1.5 py-3 text-center sm:p-3.5">
             <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.eventsValue}</p>
             <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.eventsLine1}<br />{t.landing.hero.stats.eventsLine2}</p>
           </div>
-          <div class="rounded-2xl bg-white/10 p-3.5 text-center">
+          <div class="rounded-2xl bg-white/10 px-1.5 py-3 text-center sm:p-3.5">
             <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.experienceValue}</p>
             <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.experienceLine1}<br />{t.landing.hero.stats.experienceLine2}</p>
           </div>
-          <div class="rounded-2xl bg-white/10 p-3.5 text-center">
+          <div class="rounded-2xl bg-white/10 px-1.5 py-3 text-center sm:p-3.5">
             <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.satisfactionValue}</p>
             <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.satisfactionLine1}<br />{t.landing.hero.stats.satisfactionLine2}</p>
           </div>

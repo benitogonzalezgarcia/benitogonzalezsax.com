@@ -1181,7 +1181,7 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => {
     trustTitle: `Precios en ${location.city}`,
     heroSummary: `Precios desde ${euros(min)} (pack Básico) hasta ${euros(max)} (pack completo Premium), con desplazamiento incluido.`,
     heroBody: location.localIntro,
-    primaryCtaLabel: 'Consultar disponibilidad',
+    primaryCtaLabel: 'Pedir presupuesto',
     primaryCtaHref: '#contacto',
     secondaryCtaLabel: 'Ver vídeos',
     secondaryCtaHref: '#videos',
