@@ -8,6 +8,12 @@
     ],
     "frameworksBackend": {
       "region": "europe-west1"
-    }
+    },
+    "headers": [
+      {
+        "source": "/quote/**",
+        "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      }
+    ]
   }
 }
