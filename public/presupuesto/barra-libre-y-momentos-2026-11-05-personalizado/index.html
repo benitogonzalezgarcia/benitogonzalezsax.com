@@ -297,7 +297,18 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   .pases { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-/* Highlighted "complete" option, option picker and price table */
+/* Hero price block, pack completo plan, highlighted complete option, option picker and price table */
+.meta .wide { flex-basis: 100%; }
+.meta .vals { color: var(--fg); }
+.meta .vals b { color: var(--gold); font-weight: 700; }
+.meta .note { display: block; margin-top: 4px; max-width: 56ch; color: var(--muted); font-size: .8rem; font-weight: 400; line-height: 1.45; }
+.plan { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.plan li { padding: 20px 22px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); display: grid; gap: 6px; }
+.plan small { font: 600 .7rem/1 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.plan span { font-size: 1rem; line-height: 1.55; }
+.sub { margin-top: clamp(48px, 7vw, 80px); }
+.sub h3 { font: 700 clamp(1.7rem, 4.2vw, 2.4rem)/1.05 var(--display); text-transform: uppercase; letter-spacing: .04em; margin: .5rem 0 0; }
+@media (max-width: 760px) { .plan { grid-template-columns: minmax(0, 1fr); } }
 .full {
   position: relative; margin-top: 2.4rem; padding: clamp(22px, 3.5vw, 36px);
   border: 1px solid var(--gold); border-radius: 18px;
@@ -422,7 +433,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
       <dl class="meta">
         <div><dt>Fecha</dt><dd>5 de noviembre de 2026</dd></div>
         <div><dt>Opciones</dt><dd>Barra libre o actuación completa</dd></div>
-        <div><dt>Pack completo</dt><dd>1.490 €</dd></div>
+        <div class="wide"><dt>Pack completo (barra libre y otros momentos)</dt><dd><span class="vals"><b>1.490 €</b> Premium · <b>950 €</b> Básico</span><small class="note">(Incluye llamada de asesoramiento para aprovechar al máximo el saxo, con todo lo que ha funcionado en otras bodas)</small></dd></div>
       </dl>
     </div>
   </div>
@@ -432,20 +443,13 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   <section id="actuacion">
     <div class="wrap">
       <p class="eyebrow reveal">La actuación</p>
-      <h2 class="h2 reveal" style="--d:.08s">Barra libre, seis pases</h2>
-      <p class="lede reveal" style="--d:.16s">Hora y media de saxo en directo durante la barra libre, repartida en seis pases de 10 a 15 minutos, tocando entre los invitados. Coordino cada pase con vuestro DJ o el sonido del salón para que la pista no se enfríe en ningún momento.</p>
-
-      <ol class="pases reveal" aria-label="Seis pases en hora y media">
-        <li class="pase" style="--i:0"><small>Pase</small><b>1</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
-        <li class="pase" style="--i:1"><small>Pase</small><b>2</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
-        <li class="pase" style="--i:2"><small>Pase</small><b>3</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
-        <li class="pase" style="--i:3"><small>Pase</small><b>4</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
-        <li class="pase" style="--i:4"><small>Pase</small><b>5</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
-        <li class="pase" style="--i:5"><small>Pase</small><b>6</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
-      </ol>
-      <div class="scale reveal"><span>Empieza la barra libre</span><span>1,5 h</span></div>
-
-      <p class="genres reveal"><strong>Elige tus canciones favoritas:</strong> electrónica, latino, pop, reggaeton y las canciones que elijáis.</p>
+      <h2 class="h2 reveal" style="--d:.08s">Pack completo</h2>
+      <ul class="plan">
+        <li class="reveal"><small>Primero</small><span>Vemos qué tenéis ya contratado de música y el tipo de celebración.</span></li>
+        <li class="reveal" style="--d:.08s"><small>Después</small><span>Vemos cómo mi actuación puede generar los mejores momentos en vuestra boda: picos de energía y recuerdos imborrables.</span></li>
+        <li class="reveal"><small>La base</small><span>La experiencia con todos mis clientes y lo que más ha funcionado en cientos de bodas.</span></li>
+        <li class="reveal" style="--d:.08s"><small>El precio</small><span>Mejor precio para un mejor servicio.</span></li>
+      </ul>
 
       <article class="full reveal" id="completa">
         <span class="ribbon">La opción recomendada</span>
@@ -460,6 +464,23 @@ section { padding-block: clamp(56px, 9vw, 104px); }
         </ul>
         <p class="from">Pack Premium <b>1.490 €</b> · Pack Básico <b>950 €</b></p>
       </article>
+
+      <div class="sub">
+        <p class="eyebrow reveal">Incluido en las dos opciones</p>
+        <h3 class="reveal">Barra libre, seis pases</h3>
+        <p class="lede reveal">Hora y media de saxo en directo durante la barra libre, repartida en seis pases de 10 a 15 minutos, tocando entre los invitados. Coordino cada pase con vuestro DJ o el sonido del salón para que la pista no se enfríe en ningún momento.</p>
+        <ol class="pases reveal" aria-label="Seis pases en hora y media">
+        <li class="pase" style="--i:0"><small>Pase</small><b>1</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
+        <li class="pase" style="--i:1"><small>Pase</small><b>2</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
+        <li class="pase" style="--i:2"><small>Pase</small><b>3</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
+        <li class="pase" style="--i:3"><small>Pase</small><b>4</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
+        <li class="pase" style="--i:4"><small>Pase</small><b>5</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
+        <li class="pase" style="--i:5"><small>Pase</small><b>6</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><em>10–15 min</em></li>
+      </ol>
+      <div class="scale reveal"><span>Empieza la barra libre</span><span>1,5 h</span></div>
+      <p class="genres reveal"><strong>Elige tus canciones favoritas:</strong> electrónica, latino, pop, reggaeton y las canciones que elijáis.</p>
+      </div>
+
     </div>
   </section>
 
@@ -499,7 +520,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
           </ul>
         </article>
 
-        <article class="pack reveal" style="--d:.12s">
+        <article class="pack featured reveal" style="--d:.12s">
           <h3>Basico</h3>
           <p class="tagline">Un menú delicioso de actuación</p>
           <div class="price"><span class="num" data-pack="basic">950</span><span class="cur">€</span></div>
