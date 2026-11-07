@@ -36,13 +36,6 @@ const BASE_PRICES: PriceRow[] = [
 const ZONE_1_PROVINCES = ['Murcia', 'Alicante', 'Almería'];
 const ZONE_2_PROVINCES = ['Valencia', 'Madrid', 'Albacete', 'Ciudad Real', 'Cuenca', 'Guadalajara', 'Toledo', 'Málaga', 'Granada', 'Jaén'];
 
-// Product + AggregateOffer pilot: one page per zone, away from the homepage/Murcia overlap.
-export const PRICE_SCHEMA_PILOT_SLUGS = [
-  'saxofonista-para-bodas-en-alicante',
-  'saxofonista-para-bodas-en-valencia',
-  'saxofonista-para-bodas-en-sevilla',
-];
-
 const travelSurcharge = (location?: LocationEntry) => {
   if (!location || ZONE_1_PROVINCES.includes(location.province)) return 0;
   return ZONE_2_PROVINCES.includes(location.province) ? 60 : 120;

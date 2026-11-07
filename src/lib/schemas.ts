@@ -1,6 +1,6 @@
 import type { LandingPageData } from '../data/landingPages';
 import { getEnglishLocationName, type LocationEntry } from '../data/locations';
-import { PRICE_SCHEMA_PILOT_SLUGS, priceRange } from '../data/prices';
+import { priceRange } from '../data/prices';
 import { en } from '../i18n/lang/en';
 import { es } from '../i18n/lang/es';
 import AboutImage from '../assets/about-image.jpg';
@@ -169,8 +169,8 @@ export const buildPageSchemas = (
       })),
     },
     person,
-    // Pilot: Product + AggregateOffer is what renders a price in results; Offer on a Service renders nothing.
-    ...(page.priceRows && location && PRICE_SCHEMA_PILOT_SLUGS.includes(location.slug)
+    // Product + AggregateOffer is what renders a price in results; Offer on a Service renders nothing.
+    ...(page.priceRows && location
       ? [
           {
             '@context': 'https://schema.org',
