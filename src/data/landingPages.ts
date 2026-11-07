@@ -563,11 +563,11 @@ const buildNearbyLinks = (location: LocationEntry): LandingLink[] => {
     }));
 };
 
-const buildCityTrustPoints = (rows: PriceRow[]) =>
-  (['ceremonia', 'coctel', 'banquete', 'barraLibre'] as const).map((id) => {
-    const row = priceOf(rows, id);
-    return `${row.moment} desde ${euros(row.basic)}`;
-  });
+const buildCityTrustPoints = (location: LocationEntry) => [
+  `Cobertura habitual en ${location.city} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
+  `Formato adaptable a ceremonia, cóctel, banquete, barra libre y servicio Saxo + DJ en ${location.city}.`,
+  `Propuesta pensada para adaptarse al estilo de bodas en ${location.city} y a espacios como ${location.venueStyle}.`,
+];
 
 const buildDifferentiatedIntroParagraphs = (location: LocationEntry) => [
   `${location.serviceContext} ${location.logisticsAngle}`,
@@ -1175,7 +1175,7 @@ const buildProbodaReferral = (location: LocationEntry): ProbodaReferral | undefi
 export const buildCityPageData = (location: LocationEntry): LandingPageData => {
   const recommendedSuppliers = getRecommendedSuppliersForLocation(location);
   const priceRows = getPriceRows(location);
-  const { min, max } = priceRange(priceRows);
+  const { min } = priceRange(priceRows);
   const titleSuffix = ` | Desde ${euros(min)}`;
   // Keep the price inside Google's ~60-char title cut: drop "y eventos" first, then "para bodas".
   const title =
@@ -1193,16 +1193,16 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => {
       location.city === location.province
         ? `${location.city}, Provincia de ${location.province}`
         : `${location.city}, ${location.province}`,
-    trustTitle: `Precios en ${location.city}`,
-    heroSummary: `Precios desde ${euros(min)} (pack Básico) hasta ${euros(max)} (pack completo Premium), con desplazamiento incluido.`,
-    heroBody: location.localIntro,
-    primaryCtaLabel: 'Pedir presupuesto',
+    trustTitle: `¿Por qué contar con mis servicios en ${location.city}?`,
+    heroSummary: `Saxofonista para bodas en ${location.city}.`,
+    heroBody: `Benito González ayuda a parejas de ${location.city} a montar una boda inolvidable con saxo en directo.`,
+    primaryCtaLabel: 'Consultar disponibilidad',
     primaryCtaHref: '#contacto',
     secondaryCtaLabel: 'Ver vídeos',
     secondaryCtaHref: '#videos',
     introTitle: `Saxofonista en directo para bodas en ${location.city}`,
     introParagraphs: buildDifferentiatedIntroParagraphs(location),
-    trustPoints: buildCityTrustPoints(priceRows),
+    trustPoints: buildCityTrustPoints(location),
     serviceTitle: `Que servicios cubre un saxofonista para bodas en ${location.city}`,
     serviceDescription: `Cada boda es distinta, por eso el servicio se adapta al estilo del evento, al espacio y a los momentos que queréis destacar en ${location.city} y alrededores.`,
     moments: sharedMoments,

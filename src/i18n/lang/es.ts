@@ -169,8 +169,6 @@ export const es = {
     hero: {
       trustTitle: '¿Por qué contar con mis servicios?',
       breadcrumbAriaLabel: 'Ruta de navegación',
-      pricesLink: 'Ver todos los precios',
-      quoteLink: 'Pide presupuesto',
       stats: {
         eventsValue: '+300',
         eventsLine1: 'Bodas y eventos',
