@@ -338,10 +338,10 @@ const sharedVideos: LandingVideo[] = [
     description: 'Fiesta desde el cóctel con saxo en directo entre los invitados.',
   },
   {
-    title: 'Destination Calabria en boda',
+    title: 'Todos a bailar en el cóctel',
     platform: 'youtube',
-    url: 'https://www.youtube.com/watch?v=hILiOtCMEBA',
-    description: 'Temazo de saxo en directo con energía para cóctel o barra libre.',
+    url: 'https://www.youtube.com/shorts/Ajuzs8lrC-M',
+    description: 'Invitados de todas las edades bailando en el cóctel con saxo en directo.',
   },
   {
     title: 'Show de saxo en la barra libre',
@@ -350,22 +350,16 @@ const sharedVideos: LandingVideo[] = [
     description: 'Los novios pidieron show en la barra libre y la pista se vino arriba.',
   },
   {
-    title: 'Viva la Vida - Coldplay',
+    title: 'Servilletas al aire en el banquete',
     platform: 'youtube',
-    url: 'https://www.youtube.com/shorts/xdaxq8prjeQ',
-    description: 'Entrada a cóctel con el clásico de Coldplay Viva La Vida.',
+    url: 'https://www.youtube.com/shorts/YO1pAy9YYA4',
+    description: 'Todo el salón en pie y con las servilletas al aire durante el banquete.',
   },
   {
-    title: 'Conga del cóctel al banquete',
-    platform: 'instagram',
-    url: 'https://www.instagram.com/reel/Ddl7Zv5NK-K/',
-    description: 'Paso del cóctel al banquete con conga y Paquito el Chocolatero en directo.',
-  },
-  {
-    title: 'Salida de los novios con saxo',
-    platform: 'instagram',
-    url: 'https://www.instagram.com/p/DfFzMcPtOeK/',
-    description: 'Uno de los momentos más icónicos de la boda, con saxo en directo.',
+    title: 'La casita de Bad Bunny en el cóctel',
+    platform: 'youtube',
+    url: 'https://www.youtube.com/shorts/nK8RIgIeID4',
+    description: 'Los novios montaron la casita de Bad Bunny en el cóctel con saxo en directo.',
   },
   {
     title: 'Entrada a banquete con We found Love',
@@ -385,6 +379,24 @@ const sharedVideos: LandingVideo[] = [
     platform: 'youtube',
     url: 'https://www.youtube.com/shorts/xc1HRWgJVI4',
     description: 'Tema épico ya clásico en todas las bodas modernas.',
+  },
+  {
+    title: 'Conga del cóctel al banquete',
+    platform: 'instagram',
+    url: 'https://www.instagram.com/reel/Ddl7Zv5NK-K/',
+    description: 'Paso del cóctel al banquete con conga y Paquito el Chocolatero en directo.',
+  },
+  {
+    title: 'Salida de los novios con saxo',
+    platform: 'instagram',
+    url: 'https://www.instagram.com/p/DfFzMcPtOeK/',
+    description: 'Uno de los momentos más icónicos de la boda, con saxo en directo.',
+  },
+  {
+    title: 'La fiesta no para',
+    platform: 'instagram',
+    url: 'https://www.instagram.com/reel/DXUuknxMexA/',
+    description: 'Saxo en directo para que la fiesta de la boda no pare en ningún momento.',
   },
 ];
 

@@ -448,10 +448,10 @@ const sharedVideos: LandingVideo[] = [
     description: 'The party starts at cocktail hour with live saxophone among the guests.',
   },
   {
-    title: 'Destination Calabria at a wedding',
+    title: 'Everyone dancing at cocktail hour',
     platform: 'youtube',
-    url: 'https://www.youtube.com/watch?v=hILiOtCMEBA',
-    description: 'A saxophone classic with energy for cocktail hour or open bar.',
+    url: 'https://www.youtube.com/shorts/Ajuzs8lrC-M',
+    description: 'Guests of all ages dancing at cocktail hour with live saxophone.',
   },
   {
     title: 'Saxophone show at the open bar',
@@ -460,10 +460,16 @@ const sharedVideos: LandingVideo[] = [
     description: 'The couple asked for a show at the open bar and the dance floor took off.',
   },
   {
-    title: 'Viva la Vida - Coldplay',
+    title: 'Napkins in the air at the banquet',
     platform: 'youtube',
-    url: 'https://www.youtube.com/shorts/xdaxq8prjeQ',
-    description: 'A Coldplay classic for a bright cocktail entrance.',
+    url: 'https://www.youtube.com/shorts/YO1pAy9YYA4',
+    description: 'The whole room on its feet, waving napkins during the wedding banquet.',
+  },
+  {
+    title: "Bad Bunny's casita at cocktail hour",
+    platform: 'youtube',
+    url: 'https://www.youtube.com/shorts/nK8RIgIeID4',
+    description: "The couple recreated Bad Bunny's casita at cocktail hour with live saxophone.",
   },
   {
     title: 'Conga from cocktail hour to dinner',
@@ -476,6 +482,12 @@ const sharedVideos: LandingVideo[] = [
     platform: 'instagram',
     url: 'https://www.instagram.com/p/DfFzMcPtOeK/',
     description: 'One of the most iconic moments of the wedding, with live saxophone.',
+  },
+  {
+    title: 'The party never stops',
+    platform: 'instagram',
+    url: 'https://www.instagram.com/reel/DXUuknxMexA/',
+    description: 'Live saxophone to keep the wedding party going all night.',
   },
 ];
 
