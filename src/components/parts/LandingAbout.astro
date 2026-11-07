@@ -1,6 +1,8 @@
 ---
+import { YouTube } from 'astro-embed';
 import type { LandingPageData } from '../../data/landingPages';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getYouTubePosterUrl } from '../../lib/embeds';
 import { stripSegmentAAccents } from '../../lib/typography';
 import LandingAccordionSection from './LandingAccordionSection.astro';
 
@@ -10,12 +12,26 @@ interface Props {
 
 const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
+
+const introDemoVideo = {
+  title: t.landing.about.demoVideoTitle,
+  url: 'https://www.youtube.com/shorts/-it5RoaROgU',
+};
 ---
 
 <LandingAccordionSection id={t.nav.about.anchor} eyebrow={t.landing.about.eyebrow}>
   <section class="bg-white pb-20 pt-2">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl">
+    <div class="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div class="aspect-[9/16] overflow-hidden rounded-[2rem] bg-primary/5 shadow-lg md:aspect-video">
+        <YouTube
+          id={introDemoVideo.url}
+          title={introDemoVideo.title}
+          playlabel={introDemoVideo.title}
+          poster={getYouTubePosterUrl(introDemoVideo.url)}
+          class="embed-fill"
+        />
+      </div>
+      <div>
         <h2 class="font-segmentA text-[3rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {stripSegmentAAccents(page.introTitle)}
         </h2>
