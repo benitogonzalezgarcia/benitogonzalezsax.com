@@ -92,12 +92,15 @@ export const buildPageSchemas = (
         addressCountry: BUSINESS.addressCountry,
       },
     },
+    award: BUSINESS.award,
     sameAs: [
       BUSINESS.googleBusiness,
       BUSINESS.facebook,
       BUSINESS.instagram,
       BUSINESS.youtube,
       BUSINESS.tiktok,
+      BUSINESS.bodasNet,
+      BUSINESS.proboda,
     ],
   };
 
@@ -138,12 +141,15 @@ export const buildPageSchemas = (
       hasOfferCatalog: offerCatalog,
       founder: { '@id': PERSON_ID },
       employee: { '@id': PERSON_ID },
+      award: BUSINESS.award,
       sameAs: [
         BUSINESS.googleBusiness,
         BUSINESS.facebook,
         BUSINESS.instagram,
         BUSINESS.youtube,
         BUSINESS.tiktok,
+        BUSINESS.bodasNet,
+        BUSINESS.proboda,
       ],
     },
     {
