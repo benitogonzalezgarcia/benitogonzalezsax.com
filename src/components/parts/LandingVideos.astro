@@ -31,7 +31,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
       <div class="mt-10 grid gap-6 lg:grid-cols-2">
         {page.videos.map((video) => {
           const isYouTube = video.platform === 'youtube';
-          const isPortrait = isYouTube && isYouTubeShort(video.url);
+          const isPortrait = !isYouTube || isYouTubeShort(video.url);
           const instagramEmbedUrl = isYouTube ? null : getInstagramEmbedUrl(video.url);
 
           return (

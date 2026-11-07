@@ -442,10 +442,10 @@ const buildWeddingPacks = (rows: PriceRow[]): WeddingPack[] => {
 
 const sharedVideos: LandingVideo[] = [
   {
-    title: 'Flying Free at a wedding',
+    title: 'Saxophone at cocktail hour',
     platform: 'youtube',
-    url: 'https://www.youtube.com/watch?v=Ent8OtW2DKU',
-    description: 'A powerful wedding party moment with live saxophone.',
+    url: 'https://www.youtube.com/shorts/Js7y7iF2bOQ',
+    description: 'The party starts at cocktail hour with live saxophone among the guests.',
   },
   {
     title: 'Destination Calabria at a wedding',
@@ -454,22 +454,28 @@ const sharedVideos: LandingVideo[] = [
     description: 'A saxophone classic with energy for cocktail hour or open bar.',
   },
   {
-    title: 'Titanium - David Guetta',
+    title: 'Saxophone show at the open bar',
     platform: 'youtube',
-    url: 'https://www.youtube.com/watch?v=Gq-AV9kIV-4',
-    description: 'An epic David Guetta track performed live at an event.',
-  },
-  {
-    title: 'Versions and house',
-    platform: 'youtube',
-    url: 'https://www.youtube.com/watch?v=HsD3AflaXnk',
-    description: 'Music for modern weddings, sea-view venues and party moments.',
+    url: 'https://www.youtube.com/shorts/0Jxvc0mYRXI',
+    description: 'The couple asked for a show at the open bar and the dance floor took off.',
   },
   {
     title: 'Viva la Vida - Coldplay',
     platform: 'youtube',
     url: 'https://www.youtube.com/shorts/xdaxq8prjeQ',
     description: 'A Coldplay classic for a bright cocktail entrance.',
+  },
+  {
+    title: 'Conga from cocktail hour to dinner',
+    platform: 'instagram',
+    url: 'https://www.instagram.com/reel/Ddl7Zv5NK-K/',
+    description: 'Moving guests from cocktail hour to the banquet with a live saxophone conga.',
+  },
+  {
+    title: "Newlyweds' exit with saxophone",
+    platform: 'instagram',
+    url: 'https://www.instagram.com/p/DfFzMcPtOeK/',
+    description: 'One of the most iconic moments of the wedding, with live saxophone.',
   },
 ];
 

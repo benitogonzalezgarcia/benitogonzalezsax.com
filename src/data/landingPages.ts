@@ -332,10 +332,10 @@ const buildPricesIntro = (rows: PriceRow[], city?: string) => {
 
 const sharedVideos: LandingVideo[] = [
   {
-    title: 'Flying Free en boda',
+    title: 'Saxo para animar el cóctel',
     platform: 'youtube',
-    url: 'https://www.youtube.com/watch?v=Ent8OtW2DKU',
-    description: 'Clásico de remember en boda con un enfoque potente para elevar la fiesta.',
+    url: 'https://www.youtube.com/shorts/Js7y7iF2bOQ',
+    description: 'Fiesta desde el cóctel con saxo en directo entre los invitados.',
   },
   {
     title: 'Destination Calabria en boda',
@@ -344,16 +344,10 @@ const sharedVideos: LandingVideo[] = [
     description: 'Temazo de saxo en directo con energía para cóctel o barra libre.',
   },
   {
-    title: 'Titanium - David Guetta',
+    title: 'Show de saxo en la barra libre',
     platform: 'youtube',
-    url: 'https://www.youtube.com/watch?v=Gq-AV9kIV-4',
-    description: 'Canción épica de David Guetta tocada en un evento corporativo.',
-  },
-  {
-    title: 'Versiones y House',
-    platform: 'youtube',
-    url: 'https://www.youtube.com/watch?v=HsD3AflaXnk',
-    description: 'Selección musical para bodas modernas, espacios junto al mar y fiestas.',
+    url: 'https://www.youtube.com/shorts/0Jxvc0mYRXI',
+    description: 'Los novios pidieron show en la barra libre y la pista se vino arriba.',
   },
   {
     title: 'Viva la Vida - Coldplay',
@@ -362,10 +356,16 @@ const sharedVideos: LandingVideo[] = [
     description: 'Entrada a cóctel con el clásico de Coldplay Viva La Vida.',
   },
   {
-    title: 'El fin del mundo - La La Love You',
-    platform: 'youtube',
-    url: 'https://www.youtube.com/shorts/OYBTzqE-wv0',
-    description: 'Tema moderno y actual con gran energía para animar a todos los invitados.',
+    title: 'Conga del cóctel al banquete',
+    platform: 'instagram',
+    url: 'https://www.instagram.com/reel/Ddl7Zv5NK-K/',
+    description: 'Paso del cóctel al banquete con conga y Paquito el Chocolatero en directo.',
+  },
+  {
+    title: 'Salida de los novios con saxo',
+    platform: 'instagram',
+    url: 'https://www.instagram.com/p/DfFzMcPtOeK/',
+    description: 'Uno de los momentos más icónicos de la boda, con saxo en directo.',
   },
   {
     title: 'Entrada a banquete con We found Love',
