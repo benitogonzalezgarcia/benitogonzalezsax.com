@@ -326,8 +326,8 @@ const buildPricesIntro = (rows: PriceRow[], city?: string) => {
   const ceremony = priceOf(rows, 'ceremonia').basic;
   const fullWedding = priceOf(rows, 'bodaCompleta').premium;
   return city
-    ? `¿Cuánto cobra un saxofonista para una boda en ${city}? Entre ${euros(ceremony)} por la ceremonia y ${euros(fullWedding)} por la boda completa con pack Premium. El precio depende del momento, la duración y el pack, y el desplazamiento a ${city} ya está incluido.`
-    : `¿Cuánto cobra un saxofonista para una boda? Desde ${euros(ceremony)} por la ceremonia y desde ${euros(fullWedding)} por la boda completa con pack Premium. El precio final depende del momento, la duración, el pack y la provincia de la boda.`;
+    ? `¿Cuánto cobra un saxofonista para una boda en ${city}? ${euros(fullWedding)} por la boda completa con pack Premium y desde ${euros(ceremony)} por la ceremonia. El precio depende del momento, la duración y el pack, y el desplazamiento a ${city} ya está incluido.`
+    : `¿Cuánto cobra un saxofonista para una boda? Desde ${euros(fullWedding)} por la boda completa con pack Premium y desde ${euros(ceremony)} por la ceremonia. El precio final depende del momento, la duración, el pack y la provincia de la boda.`;
 };
 
 const sharedVideos: LandingVideo[] = [
