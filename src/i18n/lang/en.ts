@@ -182,7 +182,6 @@ export const en = {
     about: {
       imageAlt: 'Benito Gonzalez wedding saxophonist',
       eyebrow: 'Your wedding and events saxophonist',
-      demoVideoTitle: 'Wedding demo video',
     },
     bio: {
       eyebrow: 'About the musician',

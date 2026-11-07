@@ -1200,7 +1200,7 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => {
     primaryCtaHref: '#contacto',
     secondaryCtaLabel: 'Ver vídeos',
     secondaryCtaHref: '#videos',
-    introTitle: `Saxofonista en directo para bodas en ${location.city}`,
+    introTitle: `Saxofonista profesional en ${location.city}`,
     introParagraphs: buildDifferentiatedIntroParagraphs(location),
     trustPoints: buildCityTrustPoints(location),
     serviceTitle: `Que servicios cubre un saxofonista para bodas en ${location.city}`,

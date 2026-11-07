@@ -185,7 +185,6 @@ export const es = {
     about: {
       imageAlt: 'Benito González saxofonista para bodas',
       eyebrow: 'Tu saxofonista para bodas',
-      demoVideoTitle: 'Vídeo demostración para Bodas',
     },
     bio: {
       eyebrow: 'Sobre el músico',

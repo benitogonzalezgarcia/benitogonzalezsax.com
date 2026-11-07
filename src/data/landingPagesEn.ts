@@ -806,7 +806,7 @@ export const buildEnglishCityPageData = (location: LocationEntry): LandingPageDa
     primaryCtaHref: '#contact',
     secondaryCtaLabel: 'Watch videos',
     secondaryCtaHref: '#videos',
-    introTitle: 'Live saxophone for weddings and events',
+    introTitle: `Professional saxophonist in ${place}`,
     introParagraphs: buildCityIntroParagraphs(location),
     trustPoints: buildCityTrustPoints(location),
     eventServicesEyebrow: 'Services',
