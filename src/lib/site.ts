@@ -23,6 +23,9 @@ export const BUSINESS = {
   // Canonical Maps URL for the Google Business Profile (mid /g/11w839lz5t);
   // share.google links are redirects and weaker as sameAs entity signals.
   googleBusiness: 'https://www.google.com/maps?cid=3246363565904711550',
+  proboda: 'https://proboda.es/profesional/benito-gonzalez-sax',
+  bodasNet: 'https://www.bodas.net/musica/benito-gonzalez-saxofonista--e260545',
+  award: 'Wedding Awards 2026 - Bodas.net',
 };
 
 export const DEFAULT_OG_IMAGE = '/apple-touch-icon.png';

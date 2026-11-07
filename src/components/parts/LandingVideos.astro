@@ -18,7 +18,7 @@ const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
-<LandingAccordionSection id={t.landing.videos.anchor} eyebrow={t.landing.videos.eyebrow}>
+<LandingAccordionSection id={t.landing.videos.anchor} eyebrow={t.landing.videos.eyebrow} open>
   <section class="bg-white pb-20 pt-2">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
@@ -31,7 +31,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
       <div class="mt-10 grid gap-6 lg:grid-cols-2">
         {page.videos.map((video) => {
           const isYouTube = video.platform === 'youtube';
-          const isPortrait = isYouTube && isYouTubeShort(video.url);
+          const isPortrait = !isYouTube || isYouTubeShort(video.url);
           const instagramEmbedUrl = isYouTube ? null : getInstagramEmbedUrl(video.url);
 
           return (

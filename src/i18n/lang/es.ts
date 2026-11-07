@@ -164,6 +164,8 @@ export const es = {
     citiesTitle: 'Saxofonista por ciudades',
     cityLinkPrefix: 'Saxofonista en',
     socialTitle: 'Redes sociales',
+    awardTitle: 'Ganador Wedding Awards 2026 de Bodas.net',
+    awardAlt: 'Insignia Wedding Awards 2026 de Bodas.net',
   },
   landing: {
     hero: {
