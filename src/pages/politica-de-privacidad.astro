@@ -1,15 +1,18 @@
 ---
 import Footer from '../components/parts/Footer.astro';
 import Header from '../components/parts/Header.astro';
-import { absoluteUrl } from '../lib/site';
+import { absoluteUrl, BUSINESS } from '../lib/site';
+import { stripSegmentAAccents } from '../lib/typography';
 import Layout from '../layouts/Layout.astro';
 
 const canonical = absoluteUrl('/politica-de-privacidad');
+const h2 = 'mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl';
+const link = 'text-primary underline';
 ---
 
 <Layout
   title="Política de privacidad | Benito González Sax"
-  description="Política de privacidad de Benito González Sax para solicitudes de presupuesto, formularios de contacto y comunicaciones comerciales."
+  description="Política de privacidad de Benito González Sax: solicitudes de presupuesto desde la web y desde formularios de anuncios de Facebook e Instagram, CRM, derechos y eliminación de datos."
   lang="es"
   canonical={canonical}
   alternates={[
@@ -22,101 +25,188 @@ const canonical = absoluteUrl('/politica-de-privacidad');
 
   <main class="pb-16 pt-20">
     <div class="container mx-auto max-w-4xl px-4">
-      <h1 class="mb-8 font-segmentA text-6xl uppercase tracking-wide font-bold text-primary md:text-8xl">
-        Política de privacidad
+      <h1 class="mb-4 font-segmentA text-6xl uppercase tracking-wide font-bold text-primary md:text-8xl">
+        {stripSegmentAAccents('Política de privacidad')}
       </h1>
+      <p class="mb-8 text-sm text-gray-500">Última actualización: 19 de noviembre de 2026</p>
 
       <div class="space-y-10 text-gray-700">
+        <p>
+          Esta política explica cómo se tratan los datos personales que nos facilitas a través de esta web, de los formularios de nuestros anuncios
+          en Facebook e Instagram y de los canales de contacto directo, conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018
+          de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
+        </p>
+
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            1. Responsable del tratamiento
-          </h2>
+          <h2 class={h2}>{stripSegmentAAccents('1. Responsable del tratamiento')}</h2>
           <p>
-            El responsable del tratamiento de los datos es <strong>Benito González García</strong>, profesional que opera comercialmente como
-            <strong> Benito González Sax</strong>.
+            El responsable del tratamiento de los datos es <strong>{BUSINESS.legalName}</strong>, profesional que opera comercialmente como
+            <strong>{BUSINESS.name}</strong>.
           </p>
           <p class="mt-4">
-            Email de contacto:
-            <a href="mailto:info@benitogonzalezsax.com" class="text-primary underline"> info@benitogonzalezsax.com</a><br />
-            Teléfono:
-            <a href="tel:+34615977190" class="text-primary underline"> +34 615 97 71 90</a><br />
-            Domicilio profesional: Mazarrón, Murcia, España.
+            Email de contacto: <a href={BUSINESS.emailHref} class={link}>{BUSINESS.email}</a><br />
+            Teléfono: <a href={BUSINESS.phoneHref} class={link}>{BUSINESS.phone}</a><br />
+            Domicilio profesional: {BUSINESS.addressLocality}, {BUSINESS.addressRegion}, España.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            2. Datos que se recogen
-          </h2>
-          <p>
-            Esta web solo solicita los datos necesarios para responder a peticiones comerciales y de contacto. Los datos pueden incluir nombre,
-            email, teléfono, fecha del evento, ciudad o lugar de la boda, tipo de servicio solicitado y mensaje enviado por el usuario.
-          </p>
-          <p class="mt-4">
-            Además, la web puede recopilar datos técnicos básicos de navegación y analítica para medir el rendimiento del sitio.
-          </p>
+          <h2 class={h2}>{stripSegmentAAccents('2. Datos que se recogen y su origen')}</h2>
+          <p>Solo se solicitan los datos necesarios para atender peticiones de información y presupuesto. Pueden proceder de:</p>
+          <ul class="mt-4 list-disc space-y-2 pl-6">
+            <li>
+              <strong>Formulario de contacto de esta web:</strong> nombre, email, teléfono, fecha del evento, ciudad o lugar del evento, tipo de
+              servicio solicitado y mensaje. El formulario abre tu aplicación de correo o WhatsApp y los datos solo nos llegan si envías el mensaje.
+            </li>
+            <li>
+              <strong>Formularios de anuncios de Meta (Facebook e Instagram):</strong> los mismos datos que envías en el formulario del anuncio
+              (nombre, email, teléfono, fecha del evento, ciudad o lugar del evento, tipo de servicio y, en su caso, mensaje). Meta puede rellenar
+              previamente algunos campos con información de tu perfil, que puedes revisar y modificar antes de enviarlo. Junto con tus respuestas
+              recibimos datos técnicos del envío: fecha y hora, identificadores del anuncio, la campaña y el formulario, y la plataforma de origen.
+            </li>
+            <li>
+              <strong>Contacto directo</strong> por email, teléfono o WhatsApp: los datos que tú mismo nos facilites en la conversación.
+            </li>
+            <li>
+              <strong>Navegación:</strong> datos técnicos y de analítica sobre el uso de la web (páginas visitadas, dispositivo, ubicación aproximada).
+            </li>
+          </ul>
+          <p class="mt-4">No solicitamos categorías especiales de datos (salud, ideología, etc.).</p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            3. Finalidad del tratamiento
-          </h2>
+          <h2 class={h2}>{stripSegmentAAccents('3. Finalidad del tratamiento')}</h2>
           <ul class="list-disc space-y-2 pl-6">
             <li>Responder a solicitudes de presupuesto o consultas sobre bodas y eventos.</li>
-            <li>Gestionar la comunicación posterior por email, teléfono o WhatsApp si el usuario la inicia.</li>
-            <li>Medir el uso de la web y mejorar su rendimiento comercial y técnico.</li>
+            <li>
+              Registrar las solicitudes recibidas por la web o por los formularios de anuncios de Meta en nuestra herramienta de gestión de clientes
+              (CRM) para organizar y hacer seguimiento de tu consulta: disponibilidad, presupuesto y reserva.
+            </li>
+            <li>Gestionar la comunicación posterior por email, teléfono o WhatsApp.</li>
+            <li>Gestionar la prestación del servicio y la facturación si llegas a contratarlo.</li>
+            <li>Medir el uso de la web y mejorar su rendimiento.</li>
+          </ul>
+          <p class="mt-4">
+            Tus datos solo se usan para atender tu solicitud y la relación comercial derivada de ella. No te enviaremos comunicaciones comerciales
+            ajenas a tu solicitud sin tu consentimiento previo, no tomamos decisiones automatizadas ni elaboramos perfiles con efectos jurídicos
+            sobre ti.
+          </p>
+        </section>
+
+        <section>
+          <h2 class={h2}>{stripSegmentAAccents('4. Base legal')}</h2>
+          <ul class="list-disc space-y-2 pl-6">
+            <li>
+              <strong>Medidas precontractuales a petición del interesado</strong> (art. 6.1.b RGPD): responder a tu solicitud de información o
+              presupuesto, enviada desde la web, un formulario de anuncio de Meta o un canal directo, y registrarla en el CRM para su seguimiento.
+            </li>
+            <li><strong>Ejecución de un contrato</strong> (art. 6.1.b RGPD): prestar el servicio contratado.</li>
+            <li><strong>Obligación legal</strong> (art. 6.1.c RGPD): conservar la documentación fiscal y contable.</li>
+            <li>
+              <strong>Consentimiento</strong> (art. 6.1.a RGPD): medición analítica de la web y, en su caso, comunicaciones comerciales. Puedes
+              retirarlo en cualquier momento sin que ello afecte a la licitud del tratamiento previo.
+            </li>
           </ul>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            4. Base legal
-          </h2>
+          <h2 class={h2}>{stripSegmentAAccents('5. Conservación de los datos')}</h2>
           <p>
-            La base legal para tratar los datos es el consentimiento del usuario al enviar una consulta y, cuando procede,
-            la aplicación de medidas precontractuales solicitadas por el propio interesado para recibir información o presupuesto.
+            Los datos de solicitudes que no terminen en contratación se conservan mientras sea necesario para atender la consulta y su seguimiento
+            comercial, y se suprimen cuando dejan de ser necesarios o cuando lo solicitas. Si contratas el servicio, se conservan durante la
+            relación contractual y, después, durante los plazos exigidos por la normativa fiscal y mercantil.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            5. Conservación de los datos
-          </h2>
+          <h2 class={h2}>{stripSegmentAAccents('6. Destinatarios y proveedores')}</h2>
           <p>
-            Los datos se conservarán durante el tiempo necesario para atender la solicitud y mantener las conversaciones comerciales derivadas de ella,
-            salvo que exista una obligación legal de conservación por más tiempo.
+            Los datos no se venden, alquilan ni ceden a terceros con fines propios. Solo acceden a ellos los proveedores necesarios para prestar el
+            servicio, como encargados del tratamiento o en el marco de sus propios servicios:
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-6">
+            <li>
+              <strong>Meta Platforms Ireland Limited</strong> (Facebook, Instagram) como plataforma de anuncios y formularios, y
+              <strong> WhatsApp Ireland Limited</strong> si nos contactas por WhatsApp. El tratamiento que Meta realiza de los datos de tu cuenta se
+              rige por su propia <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener" class={link}>política de privacidad</a>.
+            </li>
+            <li>
+              <strong>Aplicación de Meta for Developers:</strong> utilizamos una aplicación propia registrada en Meta for Developers con el único fin
+              de recibir automáticamente los datos de los formularios de nuestros anuncios y registrarlos en nuestro CRM. Esta aplicación no accede a
+              otros datos de tu cuenta de Facebook o Instagram (contactos, publicaciones, mensajes, etc.). Los datos obtenidos a través de Meta no se
+              venden, no se comparten con terceros para sus propios fines y solo se usan para las finalidades indicadas en esta política.
+            </li>
+            <li>Proveedor de la herramienta de gestión de clientes (CRM), que almacena las solicitudes por cuenta del responsable.</li>
+            <li>Google (Firebase Hosting y Google Analytics) para el alojamiento y la medición de la web, y el proveedor de correo electrónico.</li>
+            <li>Administraciones públicas, juzgados y tribunales cuando exista una obligación legal.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class={h2}>{stripSegmentAAccents('7. Transferencias internacionales')}</h2>
+          <p>
+            Algunos proveedores (como Meta o Google) pueden tratar datos fuera del Espacio Económico Europeo. En esos casos, las transferencias se
+            amparan en una decisión de adecuación de la Comisión Europea, como el Marco de Privacidad de Datos UE-EE. UU., o en cláusulas
+            contractuales tipo aprobadas por la Comisión Europea.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            6. Destinatarios y herramientas
-          </h2>
+          <h2 class={h2}>{stripSegmentAAccents('8. Derechos del usuario')}</h2>
           <p>
-            Los datos no se venden ni se ceden a terceros ajenos a la prestación del servicio. El sitio puede apoyarse en proveedores de alojamiento web,
-            analítica y correo electrónico para su funcionamiento. Actualmente la web utiliza Google Analytics para medición y Firebase Hosting para alojamiento.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            7. Derechos del usuario
-          </h2>
-          <p>
-            Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a
-            <a href="mailto:info@benitogonzalezsax.com" class="text-primary underline"> info@benitogonzalezsax.com</a>.
+            Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, así como retirar
+            tu consentimiento, escribiendo a <a href={BUSINESS.emailHref} class={link}>{BUSINESS.email}</a>. Responderemos en el plazo máximo de un
+            mes. Si tuviéramos dudas razonables sobre tu identidad, podremos pedirte información adicional para confirmarla.
           </p>
           <p class="mt-4">
-            Si consideras que el tratamiento no se ajusta a la normativa, puedes presentar una reclamación ante la Agencia Española de Protección de Datos.
+            Si consideras que el tratamiento no se ajusta a la normativa, puedes presentar una reclamación ante la Agencia Española de Protección de
+            Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener" class={link}>www.aepd.es</a>).
+          </p>
+        </section>
+
+        <section id="eliminacion-de-datos" class="scroll-mt-32">
+          <h2 class={h2}>{stripSegmentAAccents('9. Cómo solicitar la eliminación de tus datos')}</h2>
+          <p>
+            Si nos enviaste tus datos desde esta web, desde un formulario de anuncio de Facebook o Instagram o por cualquier otro canal, puedes pedir
+            que los eliminemos en cualquier momento:
+          </p>
+          <ol class="mt-4 list-decimal space-y-2 pl-6">
+            <li>
+              Escribe a <a href={BUSINESS.emailHref} class={link}>{BUSINESS.email}</a> con el asunto «Eliminar mis datos».
+            </li>
+            <li>Indica el nombre, el email o el teléfono con el que enviaste la solicitud.</li>
+            <li>
+              Eliminaremos tus datos del CRM, del correo y de los canales de mensajería en un plazo máximo de un mes y te lo confirmaremos por email,
+              salvo los datos que debamos conservar por obligación legal, que se mantendrán bloqueados solo durante el plazo exigido.
+            </li>
+          </ol>
+          <p class="mt-4">
+            Esta solicitud afecta a los datos que tenemos nosotros. Los datos que Meta conserva en tu cuenta de Facebook o Instagram se gestionan
+            desde la configuración de privacidad de tu cuenta en esas plataformas.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            8. Cambios en esta política
-          </h2>
+          <h2 class={h2}>{stripSegmentAAccents('10. Seguridad')}</h2>
           <p>
-            Esta política de privacidad puede actualizarse para reflejar cambios legales, técnicos o de funcionamiento de la web. La versión vigente será siempre la publicada en esta página.
+            Aplicamos medidas técnicas y organizativas adecuadas para proteger tus datos frente a accesos no autorizados, pérdida o alteración. El
+            acceso a las solicitudes está limitado al responsable del tratamiento.
+          </p>
+        </section>
+
+        <section>
+          <h2 class={h2}>{stripSegmentAAccents('11. Menores de edad')}</h2>
+          <p>
+            Nuestros servicios se dirigen a personas adultas. No recogemos conscientemente datos de menores de 14 años; si detectamos que los hemos
+            recibido, los eliminaremos.
+          </p>
+        </section>
+
+        <section>
+          <h2 class={h2}>{stripSegmentAAccents('12. Cambios en esta política')}</h2>
+          <p>
+            Esta política de privacidad puede actualizarse para reflejar cambios legales, técnicos o de funcionamiento. La versión vigente será
+            siempre la publicada en esta página, con su fecha de última actualización.
           </p>
         </section>
       </div>

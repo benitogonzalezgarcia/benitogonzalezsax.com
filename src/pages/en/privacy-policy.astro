@@ -1,15 +1,17 @@
 ---
 import Footer from '../../components/parts/Footer.astro';
 import Header from '../../components/parts/Header.astro';
-import { absoluteUrl } from '../../lib/site';
+import { absoluteUrl, BUSINESS } from '../../lib/site';
 import Layout from '../../layouts/Layout.astro';
 
 const canonical = absoluteUrl('/en/privacy-policy');
+const h2 = 'mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl';
+const link = 'text-primary underline';
 ---
 
 <Layout
   title="Privacy Policy | Benito Gonzalez Sax"
-  description="Privacy policy for Benito Gonzalez Sax covering contact requests, quote enquiries and website analytics."
+  description="Privacy policy for Benito Gonzalez Sax: quote requests from the website and from Facebook and Instagram lead ad forms, CRM, your rights and data deletion."
   lang="en"
   canonical={canonical}
   alternates={[
@@ -22,98 +24,187 @@ const canonical = absoluteUrl('/en/privacy-policy');
 
   <main class="pb-16 pt-20">
     <div class="container mx-auto max-w-4xl px-4">
-      <h1 class="mb-8 font-segmentA text-6xl uppercase tracking-wide font-bold text-primary md:text-8xl">
+      <h1 class="mb-4 font-segmentA text-6xl uppercase tracking-wide font-bold text-primary md:text-8xl">
         Privacy Policy
       </h1>
+      <p class="mb-8 text-sm text-gray-500">Last updated: 19 November 2026</p>
 
       <div class="space-y-10 text-gray-700">
+        <p>
+          This policy explains how we process the personal data you provide through this website, through the forms in our Facebook and
+          Instagram ads and through direct contact channels, in accordance with Regulation (EU) 2016/679 (GDPR) and Spanish Organic Law 3/2018
+          on the Protection of Personal Data and Guarantee of Digital Rights (LOPDGDD).
+        </p>
+
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            1. Data controller
-          </h2>
+          <h2 class={h2}>1. Data controller</h2>
           <p>
-            The data controller is <strong>Benito Gonzalez Garcia</strong>, operating commercially as <strong>Benito Gonzalez Sax</strong>.
+            The data controller is <strong>{BUSINESS.legalName}</strong>, operating commercially as <strong>{BUSINESS.name}</strong>.
           </p>
           <p class="mt-4">
-            Contact email:
-            <a href="mailto:info@benitogonzalezsax.com" class="text-primary underline"> info@benitogonzalezsax.com</a><br />
-            Phone:
-            <a href="tel:+34615977190" class="text-primary underline"> +34 615 97 71 90</a><br />
-            Professional address: Mazarron, Murcia, Spain.
+            Contact email: <a href={BUSINESS.emailHref} class={link}>{BUSINESS.email}</a><br />
+            Phone: <a href={BUSINESS.phoneHref} class={link}>{BUSINESS.phone}</a><br />
+            Professional address: {BUSINESS.addressLocality}, {BUSINESS.addressRegion}, Spain.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            2. Data collected
-          </h2>
-          <p>
-            This website only requests the information needed to answer contact and quote enquiries. That may include name, email,
-            phone number, wedding date, city or venue, requested service type and any message submitted by the user.
-          </p>
-          <p class="mt-4">
-            The site may also collect basic technical and analytics data to measure website usage and performance.
-          </p>
+          <h2 class={h2}>2. Data collected and its source</h2>
+          <p>We only request the data needed to answer information and quote requests. It may come from:</p>
+          <ul class="mt-4 list-disc space-y-2 pl-6">
+            <li>
+              <strong>This website's contact form:</strong> name, email, phone number, event date, event city or venue, requested service type and
+              message. The form opens your email or WhatsApp app, and the data only reaches us if you send the message.
+            </li>
+            <li>
+              <strong>Meta lead ad forms (Facebook and Instagram):</strong> the same data you submit in the ad form (name, email, phone number,
+              event date, event city or venue, service type and, where applicable, a message). Meta may pre-fill some fields with information from
+              your profile, which you can review and edit before submitting. Along with your answers we receive technical submission data: date and
+              time, ad, campaign and form identifiers, and the source platform.
+            </li>
+            <li>
+              <strong>Direct contact</strong> by email, phone or WhatsApp: the data you choose to share in the conversation.
+            </li>
+            <li>
+              <strong>Browsing:</strong> technical and analytics data about website usage (pages visited, device, approximate location).
+            </li>
+          </ul>
+          <p class="mt-4">We do not request special categories of data (health, beliefs, etc.).</p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            3. Purpose of processing
-          </h2>
+          <h2 class={h2}>3. Purpose of processing</h2>
           <ul class="list-disc space-y-2 pl-6">
-            <li>Reply to quote requests and enquiries related to weddings and events.</li>
-            <li>Manage follow-up communication by email, phone or WhatsApp when the user starts that conversation.</li>
-            <li>Measure and improve the commercial and technical performance of the website.</li>
+            <li>Reply to quote requests and enquiries about weddings and events.</li>
+            <li>
+              Record requests received through the website or through Meta lead ad forms in our customer relationship management tool (CRM) to
+              organise and follow up on your enquiry: availability, quote and booking.
+            </li>
+            <li>Manage follow-up communication by email, phone or WhatsApp.</li>
+            <li>Provide the service and handle invoicing if you book it.</li>
+            <li>Measure website usage and improve its performance.</li>
+          </ul>
+          <p class="mt-4">
+            Your data is only used to handle your request and the resulting commercial relationship. We will not send you marketing communications
+            unrelated to your request without your prior consent, and we do not make automated decisions or create profiles that produce legal
+            effects concerning you.
+          </p>
+        </section>
+
+        <section>
+          <h2 class={h2}>4. Legal basis</h2>
+          <ul class="list-disc space-y-2 pl-6">
+            <li>
+              <strong>Pre-contractual steps taken at your request</strong> (Art. 6(1)(b) GDPR): replying to your information or quote request,
+              whether sent from the website, a Meta lead ad form or a direct channel, and recording it in the CRM for follow-up.
+            </li>
+            <li><strong>Performance of a contract</strong> (Art. 6(1)(b) GDPR): providing the booked service.</li>
+            <li><strong>Legal obligation</strong> (Art. 6(1)(c) GDPR): keeping tax and accounting records.</li>
+            <li>
+              <strong>Consent</strong> (Art. 6(1)(a) GDPR): website analytics and, where applicable, marketing communications. You may withdraw it at
+              any time without affecting the lawfulness of prior processing.
+            </li>
           </ul>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            4. Legal basis
-          </h2>
+          <h2 class={h2}>5. Data retention</h2>
           <p>
-            The legal basis is the user&apos;s consent when submitting a request and, where applicable, the application of pre-contractual measures requested by the user in order to receive information or a quote.
+            Data from requests that do not lead to a booking is kept for as long as needed to handle the enquiry and its commercial follow-up, and is
+            deleted once it is no longer needed or when you ask us to. If you book the service, data is kept for the duration of the contractual
+            relationship and afterwards for the periods required by tax and commercial law.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            5. Data retention
-          </h2>
+          <h2 class={h2}>6. Recipients and providers</h2>
           <p>
-            Data are kept only for as long as necessary to respond to the request and manage the resulting commercial conversation, unless a longer retention period is required by law.
+            Personal data is not sold, rented or disclosed to third parties for their own purposes. Only the providers needed to deliver the service
+            have access to it, as data processors or within the scope of their own services:
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-6">
+            <li>
+              <strong>Meta Platforms Ireland Limited</strong> (Facebook, Instagram) as the ads and lead form platform, and
+              <strong> WhatsApp Ireland Limited</strong> if you contact us via WhatsApp. Meta's processing of your account data is governed by its own
+              <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener" class={link}>privacy policy</a>.
+            </li>
+            <li>
+              <strong>Meta for Developers app:</strong> we use our own app registered on Meta for Developers solely to automatically receive the data
+              submitted through our ad forms and record it in our CRM. This app does not access any other data from your Facebook or Instagram
+              account (contacts, posts, messages, etc.). Data obtained through Meta is not sold, is not shared with third parties for their own
+              purposes and is only used for the purposes described in this policy.
+            </li>
+            <li>The provider of the customer relationship management tool (CRM), which stores requests on the controller's behalf.</li>
+            <li>Google (Firebase Hosting and Google Analytics) for website hosting and measurement, and the email provider.</li>
+            <li>Public authorities, courts and tribunals where there is a legal obligation.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class={h2}>7. International transfers</h2>
+          <p>
+            Some providers (such as Meta or Google) may process data outside the European Economic Area. In those cases, transfers rely on a European
+            Commission adequacy decision, such as the EU-US Data Privacy Framework, or on standard contractual clauses approved by the European
+            Commission.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            6. Recipients and tools
-          </h2>
+          <h2 class={h2}>8. Your rights</h2>
           <p>
-            Personal data are not sold or disclosed to unrelated third parties. The website may rely on hosting, analytics and email providers to operate.
-            At present, the site uses Google Analytics for measurement and Firebase Hosting for hosting.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            7. Your rights
-          </h2>
-          <p>
-            You may exercise your rights of access, rectification, erasure, objection, restriction and portability by emailing
-            <a href="mailto:info@benitogonzalezsax.com" class="text-primary underline"> info@benitogonzalezsax.com</a>.
+            You may exercise your rights of access, rectification, erasure, objection, restriction of processing and portability, and withdraw your
+            consent, by emailing <a href={BUSINESS.emailHref} class={link}>{BUSINESS.email}</a>. We will reply within one month at the latest. If we
+            have reasonable doubts about your identity, we may ask for additional information to confirm it.
           </p>
           <p class="mt-4">
-            If you believe that the processing does not comply with the applicable regulations, you may lodge a complaint with the Spanish Data Protection Agency.
+            If you believe the processing does not comply with the applicable regulations, you may lodge a complaint with the Spanish Data Protection
+            Agency (<a href="https://www.aepd.es" target="_blank" rel="noopener" class={link}>www.aepd.es</a>).
+          </p>
+        </section>
+
+        <section id="data-deletion" class="scroll-mt-32">
+          <h2 class={h2}>9. How to request deletion of your data</h2>
+          <p>
+            If you sent us your data through this website, a Facebook or Instagram lead ad form or any other channel, you can ask us to delete it at
+            any time:
+          </p>
+          <ol class="mt-4 list-decimal space-y-2 pl-6">
+            <li>
+              Email <a href={BUSINESS.emailHref} class={link}>{BUSINESS.email}</a> with the subject "Delete my data".
+            </li>
+            <li>Include the name, email or phone number you used to send the request.</li>
+            <li>
+              We will delete your data from the CRM, email and messaging channels within one month at the latest and confirm it by email, except for
+              data we must keep by law, which will remain blocked only for the required period.
+            </li>
+          </ol>
+          <p class="mt-4">
+            This request covers the data we hold. Data that Meta keeps in your Facebook or Instagram account is managed from your account's privacy
+            settings on those platforms.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
-            8. Changes to this policy
-          </h2>
+          <h2 class={h2}>10. Security</h2>
           <p>
-            This privacy policy may be updated to reflect legal, technical or operational changes. The version published on this page will always be the one currently in force.
+            We apply appropriate technical and organisational measures to protect your data against unauthorised access, loss or alteration. Access to
+            requests is limited to the data controller.
+          </p>
+        </section>
+
+        <section>
+          <h2 class={h2}>11. Minors</h2>
+          <p>
+            Our services are aimed at adults. We do not knowingly collect data from children under 14; if we find that we have received such data, we
+            will delete it.
+          </p>
+        </section>
+
+        <section>
+          <h2 class={h2}>12. Changes to this policy</h2>
+          <p>
+            This privacy policy may be updated to reflect legal, technical or operational changes. The version published on this page, with its last
+            updated date, is always the one in force.
           </p>
         </section>
       </div>
